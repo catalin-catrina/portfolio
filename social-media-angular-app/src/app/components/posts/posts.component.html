@@ -1,5 +1,5 @@
-<div class="grid-container">
-  <ng-container *ngIf="posts$ | async as posts">
+<ng-container *ngIf="userId; else ownProfile">
+  <div class="grid-container" *ngIf="visitedProfilePosts | async as posts">
     <div
       class="post-container"
       *ngFor="let post of posts"
@@ -15,5 +15,25 @@
       </p>
       <img [src]="post.imageUrl" />
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-container>
+
+<ng-template #ownProfile>
+  <div class="grid-container" *ngIf="userPosts | async as posts">
+    <div
+      class="post-container"
+      *ngFor="let post of posts"
+      [routerLink]="['/post', post?.id]"
+      routerLinkActive="router-link-active"
+    >
+      <p>{{ post?.post }}</p>
+      <!-- <p>
+        Posted on: {{ months[post?.createdAt.getMonth()] }}
+        {{ post?.createdAt.getDate() }} at {{ post?.createdAt.getHours() }}:{{
+          post?.createdAt.getMinutes()
+        }}
+      </p> -->
+      <img [src]="post?.imageUrl" />
+    </div>
+  </div>
+</ng-template>

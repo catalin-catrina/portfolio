@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import {
   getDownloadURL,
   ref,
@@ -6,8 +6,6 @@ import {
   uploadBytesResumable,
 } from '@angular/fire/storage';
 import { AuthenticationService } from './authentication.service';
-import { catchError, filter, from, map, Observable, of, switchMap } from 'rxjs';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   addDoc,
   collection,
@@ -29,11 +27,7 @@ export class PostsService {
   private storage = inject(Storage);
   private firestore = inject(Firestore);
   private auth = inject(AuthenticationService);
-
   userSignal = this.auth.getUser();
-  user$ = toObservable(this.auth.getUser());
-
-  postsSignal = toSignal(this.getUserPosts());
 
   async getUserPostById(
     id: string
@@ -43,7 +37,7 @@ export class PostsService {
       const postDocSnapshot = await getDoc(postDocRef);
       if (postDocSnapshot.exists()) {
         const postData = postDocSnapshot.data() as Post;
-        
+
         const userDocRef = doc(this.firestore, 'users', postData.userId);
         const userDocSnapshot = await getDoc(userDocRef);
         if (userDocSnapshot.exists()) {
@@ -63,30 +57,30 @@ export class PostsService {
     }
   }
 
-  getUserPosts(): Observable<Post[]> {
-    return this.user$.pipe(
-      filter(Boolean),
-      switchMap((user) => {
-        const postsCollection = collection(this.firestore, 'posts');
-        const q = query(postsCollection, where('userId', '==', user?.uid));
+  async getUserPosts(
+    userId: string
+  ): Promise<((Post & { userName: string }) | null)[]> {
+    const postsCollection = collection(this.firestore, 'posts');
+    const q = query(postsCollection, where('userId', '==', userId));
+    const querySnapshot = await getDocs(q);
 
-        return from(
-          getDocs(q).then((querySnapshot) =>
-            querySnapshot.docs.map(
-              (doc) =>
-                ({
-                  ...doc.data(),
-                  id: doc.id,
-                  createdAt: new Date(doc.data()['createdAt']),
-                } as Post)
-            )
-          )
-        ).pipe(
-          catchError((error) => {
-            console.error('Error fetching posts: ', error);
-            return of([]);
-          })
-        );
+    return Promise.all(
+      querySnapshot.docs.map(async (document) => {
+        const postData = document.data() as Post;
+
+        const userDocRef = doc(this.firestore, 'users', postData.userId);
+        const userDocSnap = await getDoc(userDocRef);
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data() as User;
+          const userName = userData.fullname;
+
+          return {
+            ...postData,
+            userName,
+          } as Post & { userName: string };
+        } else {
+          return null;
+        }
       })
     );
   }
