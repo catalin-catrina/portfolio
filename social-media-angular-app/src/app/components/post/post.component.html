@@ -1,0 +1,25 @@
+<ng-container *ngIf="post">
+  <div class="card">
+    <div class="card-title">
+      <h3>Post by: {{ post.userName }}</h3>
+    </div>
+    <div class="card-image">
+      <img [src]="post.imageUrl" />
+    </div>
+    <div class="card-description">
+      {{ post.post }}
+    </div>
+    <div class="card-date">
+      Posted on: {{ months[post.createdAt.getMonth()] }}
+      {{ post.createdAt.getDate() }} at {{ post.createdAt.getHours() }}:{{
+        post.createdAt.getMinutes()
+      }}
+    </div>
+    <div class="card-comments">
+      <app-comments [post]="post"></app-comments>
+    </div>
+    <div class="card-write-comment">
+      <app-create-comment [post]="post"></app-create-comment>
+    </div>
+  </div>
+</ng-container>

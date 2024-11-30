@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 100%;
+  width: 1000px;
+  height: 800px;
+  margin: 0 auto;
+
+  &__image {
+    width: 40%;
+
+    img {
+    }
+  }
+
+  &__form-wrapper {
+    width: 40%;
+    .form-wrapper__image {
+      img {
+      }
+    }
+
+    .form-wrapper__form {
+      mat-form-field {
+        display: block;
+      }
+      button {
+        margin-bottom: 20px;
+      }
+    }
+
+    .form-wrapper__other {
+      a {
+      }
+    }
+  }
+}

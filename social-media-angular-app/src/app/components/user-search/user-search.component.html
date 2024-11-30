@@ -1,0 +1,15 @@
+<form [formGroup]="searchForm">
+  <input type="text" formControlName="query" placeholder="Search users..." />
+  <button type="button">Search</button>
+</form>
+
+<div *ngIf="searchResults.length">
+  <h3>Search Results:</h3>
+  <ul>
+    <li *ngFor="let user of searchResults">
+      <a [routerLink]="['/profile', user.uid]" routerLinkActive>{{
+        user.displayName
+      }}</a>
+    </li>
+  </ul>
+</div>

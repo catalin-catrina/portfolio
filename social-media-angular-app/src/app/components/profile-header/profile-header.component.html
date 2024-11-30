@@ -1,0 +1,18 @@
+<ng-container *ngIf="isCurrentUser; else guestProfile">
+  <h3>{{ user?.displayName }} ({{ user?.fullname }})</h3>
+</ng-container>
+<ng-template #guestProfile>
+  <h3>{{ user?.displayName }} ({{ user?.fullname }})</h3>
+  <button
+    *ngIf="!isFollowing"
+    (click)="followUser(loggedInUserIdSignal(), profileUserId)"
+  >
+    Follow
+  </button>
+  <button
+    *ngIf="isFollowing"
+    (click)="unfollowUser(loggedInUserIdSignal(), profileUserId)"
+  >
+    Unfollow
+  </button>
+</ng-template>

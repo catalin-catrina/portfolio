@@ -1,0 +1,96 @@
+<div class="container flex">
+  <div class="container__top">
+    <div class="container__top__image">
+      <img src="logo.png" />
+    </div>
+    <div class="container__top__text">
+      Sign up to see photos and videos from your friends.
+    </div>
+  </div>
+  <div class="container__middle">
+    <div class="form__wrapper">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            name="email"
+            email
+            required
+            matInput
+            ngModel
+            #emailInput="ngModel"
+          />
+          <mat-error *ngIf="emailInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+          <mat-error *ngIf="emailInput.hasError('email')"
+            >Email is invalid</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Full Name</mat-label>
+          <input
+            type="text"
+            name="fullname"
+            required
+            matInput
+            ngModel
+            #fullnameInput="ngModel"
+          />
+          <mat-error *ngIf="fullnameInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            name="username"
+            required
+            matInput
+            ngModel
+            #usernameInput="ngModel"
+          />
+          <mat-error *ngIf="usernameInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            name="password"
+            required
+            matInput
+            ngModel
+            #passwordInput="ngModel"
+          />
+          <mat-error *ngIf="passwordInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+        </mat-form-field>
+
+        <div class="container__middle__text">
+          <span
+            >People who use our service may have uploaded your contact
+            information to Instagram. Learn More By signing up, you agree to our
+            Terms. Learn how we collect, use and share your data in our Privacy
+            Policy and how we use cookies and similar technology in our Cookies
+            Policy.</span
+          >
+
+          <span>
+            By signing up, you agree to our Terms. Learn how we collect, use and
+            share your data in our Privacy Policy and how we use cookies and
+            similar technology in our Cookies Policy.</span
+          >
+        </div>
+        <button type="submit" mat-raised-button>Next</button>
+      </form>
+    </div>
+  </div>
+</div>

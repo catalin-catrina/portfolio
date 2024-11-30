@@ -1,0 +1,43 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  max-width: 100%;
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  padding: 40px 80px 40px 80px;
+
+  &__top {
+    &__image {
+      margin: 0 auto;
+      max-width: 60%;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  span {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+}

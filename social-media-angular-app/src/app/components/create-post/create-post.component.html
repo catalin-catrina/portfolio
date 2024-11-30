@@ -1,0 +1,15 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <input
+    class="pic-input"
+    type="file"
+    name="picture"
+    (change)="onFileSelected($event)"
+  />
+  <mat-form-field>
+    <input type="text" name="description" matInput ngModel />
+  </mat-form-field>
+  <div *ngIf="imageUrl">
+    <img [src]="imageUrl" />
+  </div>
+  <button class="btn" type="submit">Upload</button>
+</form>

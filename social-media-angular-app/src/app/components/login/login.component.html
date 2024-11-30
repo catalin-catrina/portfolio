@@ -1,0 +1,61 @@
+<div class="container flex">
+  <div class="container__image">
+    <img src="login_dark.jpg" />
+  </div>
+  <div class="container__form-wrapper">
+    <div class="form-wrapper__image">
+      <img src="logo.png" />
+    </div>
+    <div class="form-wrapper__form">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            name="email"
+            email
+            required
+            ngModel
+            #emailInput="ngModel"
+            matInput
+          />
+          <mat-error *ngIf="emailInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+          <mat-error *ngIf="emailInput.hasError('email')"
+            >Email is invalid</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            name="password"
+            required
+            ngModel
+            #passwordInput="ngModel"
+            matInput
+          />
+          <mat-error *ngIf="passwordInput.hasError('required')"
+            >Field must be completed</mat-error
+          >
+        </mat-form-field>
+        <button type="submit" mat-raised-button [disabled]="form.invalid">
+          Log in
+        </button>
+      </form>
+    </div>
+    <div class="form-wrapper__other">
+      <div class="no-account">
+        Don't have an account?
+        <a
+          mat-raised-button
+          [routerLink]="['/signup']"
+          routerLinkActive="router-link-active"
+        >
+          Sign up
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

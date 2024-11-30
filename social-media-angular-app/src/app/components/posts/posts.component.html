@@ -1,0 +1,19 @@
+<div class="grid-container">
+  <ng-container *ngIf="posts$ | async as posts">
+    <div
+      class="post-container"
+      *ngFor="let post of posts"
+      [routerLink]="['/post', post.id]"
+      routerLinkActive="router-link-active"
+    >
+      <p>{{ post.post }}</p>
+      <p>
+        Posted on: {{ months[post.createdAt.getMonth()] }}
+        {{ post.createdAt.getDate() }} at {{ post.createdAt.getHours() }}:{{
+          post.createdAt.getMinutes()
+        }}
+      </p>
+      <img [src]="post.imageUrl" />
+    </div>
+  </ng-container>
+</div>
