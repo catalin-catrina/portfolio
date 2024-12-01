@@ -7,24 +7,29 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Post } from '../../models/post.interface';
 import { PostsService } from '../../services/posts.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { months } from '../../constants/constants';
+import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, RouterLink, RouterLinkActive],
+  imports: [
+    CommonModule,
+    AsyncPipe,
+    RouterLink,
+    RouterLinkActive,
+    TimestampToDatePipe,
+    DatePipe,
+  ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit, OnChanges {
   @Input() userId!: string | null;
-
-  months = months;
 
   visitedProfilePosts!: Promise<Post[]>;
   userPosts!: Promise<((Post & { userName: string }) | null)[]>;

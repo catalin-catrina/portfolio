@@ -106,7 +106,13 @@ export class FeedService implements OnDestroy {
       } else {
         this.noMoreDataSubject.next(false);
 
-        const newPosts = querySnapshot.docs.map((doc) => doc.data() as Post);
+        const newPosts = querySnapshot.docs.map(
+          (doc) =>
+            ({
+              ...doc.data(),
+              id: doc.id,
+            } as Post)
+        );
         const currentPosts = this.postsSubject.value;
 
         this.postsSubject.next([...currentPosts, ...newPosts]);

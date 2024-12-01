@@ -18,21 +18,18 @@ export class CreateCommentComponent {
   private authService = inject(AuthenticationService);
 
   currentUserSignal = this.authService.getUser();
+  userDetails = this.authService.userDetails;
 
   async onSubmit(form: NgForm) {
     const comment = form.value.comment;
     const postId = this.post?.id;
-    const userId = this.currentUserSignal()?.uid;
-    if (userId) {
-      const userDetails = await this.authService.getUserDetails(userId);
 
-      if (comment && postId && userDetails && userDetails.fullname) {
-        this.commentsService.writeCommentToFirestore(
-          comment,
-          postId,
-          userDetails.fullname
-        );
-      }
+    if (comment && postId && this.userDetails && this.userDetails.fullname) {
+      this.commentsService.writeCommentToFirestore(
+        comment,
+        postId,
+        this.userDetails.fullname
+      );
     }
   }
 }

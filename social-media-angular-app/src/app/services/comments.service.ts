@@ -4,6 +4,7 @@ import {
   collection,
   Firestore,
   onSnapshot,
+  orderBy,
   query,
   serverTimestamp,
   where,
@@ -30,7 +31,11 @@ export class CommentsService {
   getCommentsAndUserByPostId(postId: string): Observable<Comment[]> {
     return new Observable((observer) => {
       const commentsCollection = collection(this.firestore, 'comments');
-      const q = query(commentsCollection, where('postId', '==', postId));
+      const q = query(
+        commentsCollection,
+        where('postId', '==', postId),
+        orderBy('createdAt')
+      );
 
       const unsubscribe = onSnapshot(
         q,

@@ -7,12 +7,7 @@
       routerLinkActive="router-link-active"
     >
       <p>{{ post.post }}</p>
-      <p>
-        Posted on: {{ months[post.createdAt.getMonth()] }}
-        {{ post.createdAt.getDate() }} at {{ post.createdAt.getHours() }}:{{
-          post.createdAt.getMinutes()
-        }}
-      </p>
+      <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
       <img [src]="post.imageUrl" />
     </div>
   </div>
@@ -27,12 +22,7 @@
       routerLinkActive="router-link-active"
     >
       <p>{{ post?.post }}</p>
-      <!-- <p>
-        Posted on: {{ months[post?.createdAt.getMonth()] }}
-        {{ post?.createdAt.getDate() }} at {{ post?.createdAt.getHours() }}:{{
-          post?.createdAt.getMinutes()
-        }}
-      </p> -->
+      <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
       <img [src]="post?.imageUrl" />
     </div>
   </div>

@@ -95,7 +95,6 @@ export class PostsService {
         ({
           ...doc.data(),
           id: doc.id,
-          createdAt: new Date(doc.data()['createdAt']),
         } as Post)
     );
     return posts;

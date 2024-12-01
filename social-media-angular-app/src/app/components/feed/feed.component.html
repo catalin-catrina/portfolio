@@ -1,6 +1,12 @@
 <div class="grid-container">
-  <div *ngFor="let post of posts" class="post-container">
+  <div
+    *ngFor="let post of posts"
+    class="post-container"
+    [routerLink]="['/post', post.id]"
+    routerLinkActive="router-link-active"
+  >
     <h2>{{ post.post }}</h2>
+    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
     <img [src]="post.imageUrl" />
   </div>
 </div>

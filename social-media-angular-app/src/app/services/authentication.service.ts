@@ -1,4 +1,4 @@
-import { inject, Injectable, Signal } from '@angular/core';
+import { effect, inject, Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   Auth,
@@ -31,6 +31,22 @@ export class AuthenticationService {
   private _userSignal: Signal<User | null> = toSignal(this._user$, {
     initialValue: null,
   });
+
+  userDetails!: IUser | null;
+
+  constructor() {
+    effect(() => {
+      const user = this.getUser();
+      if (user()) {
+        const userId = user()?.uid;
+        if (userId) {
+          this.getUserDetails(userId).then(
+            (user: IUser | null) => (this.userDetails = user)
+          );
+        }
+      }
+    });
+  }
 
   getUser(): Signal<User | null> {
     return this._userSignal;

@@ -9,11 +9,13 @@ import {
 import { FeedService } from '../../services/feed.service';
 import { Subscription } from 'rxjs';
 import { Post } from '../../models/post.interface';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, TimestampToDatePipe],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',
 })
