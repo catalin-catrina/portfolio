@@ -31,8 +31,7 @@ export class CommentsComponent implements OnChanges {
     if (changes['post'].currentValue && this.post && this.post.id) {
       this.commentsService
         .getCommentsAndUserByPostId(this.post.id)
-        .then((comments: Comment[]) => {
-          console.log(comments);
+        .subscribe((comments: Comment[]) => {
           this.comments = comments;
         });
     }

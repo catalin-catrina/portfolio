@@ -7,7 +7,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { AlgoliaService } from './algolia.service';
-import { User } from '../models/user.interface';
+import { IUser } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class UserSearchService {
     return response.hits;
   }
 
-  async getUsersFromFirestore(searchResults: any[]): Promise<User[]> {
+  async getUsersFromFirestore(searchResults: any[]): Promise<IUser[]> {
     const usersCollection = collection(this.firestore, 'users');
     const nestedUsers = await Promise.all(
       searchResults.map(async (user: any) => {
@@ -35,7 +35,7 @@ export class UserSearchService {
         );
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map((doc) => {
-          return doc.data() as User;
+          return doc.data() as IUser;
         });
       })
     );

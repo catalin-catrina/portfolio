@@ -18,7 +18,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Post } from '../models/post.interface';
-import { User } from '../models/user.interface';
+import { IUser } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +41,7 @@ export class PostsService {
         const userDocRef = doc(this.firestore, 'users', postData.userId);
         const userDocSnapshot = await getDoc(userDocRef);
         if (userDocSnapshot.exists()) {
-          const userData = userDocSnapshot.data() as User;
+          const userData = userDocSnapshot.data() as IUser;
           const userName = userData.fullname;
 
           return { ...postData, userName } as Post & { userName: string };
@@ -71,11 +71,12 @@ export class PostsService {
         const userDocRef = doc(this.firestore, 'users', postData.userId);
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
-          const userData = userDocSnap.data() as User;
+          const userData = userDocSnap.data() as IUser;
           const userName = userData.fullname;
 
           return {
             ...postData,
+            id: document.id,
             userName,
           } as Post & { userName: string };
         } else {

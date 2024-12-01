@@ -1,10 +1,4 @@
-import {
-  Component,
-  inject,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommentsService } from '../../services/comments.service';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -25,15 +19,20 @@ export class CreateCommentComponent {
 
   currentUserSignal = this.authService.getUser();
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     const comment = form.value.comment;
     const postId = this.post?.id;
     const userId = this.currentUserSignal()?.uid;
+    if (userId) {
+      const userDetails = await this.authService.getUserDetails(userId);
 
-    console.log(this.post);
-    console.log(comment, postId, userId);
-    if (comment && postId && userId) {
-      this.commentsService.writeCommentToFirestore(comment, postId, userId);
+      if (comment && postId && userDetails && userDetails.fullname) {
+        this.commentsService.writeCommentToFirestore(
+          comment,
+          postId,
+          userDetails.fullname
+        );
+      }
     }
   }
 }

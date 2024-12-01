@@ -10,10 +10,10 @@
       {{ post.post }}
     </div>
     <div class="card-date">
-      Posted on: {{ months[post.createdAt.getMonth()] }}
+      <!-- Posted on: {{ months[post.createdAt.getMonth()] }}
       {{ post.createdAt.getDate() }} at {{ post.createdAt.getHours() }}:{{
         post.createdAt.getMinutes()
-      }}
+      }} -->
     </div>
     <div class="card-comments">
       <app-comments [post]="post"></app-comments>

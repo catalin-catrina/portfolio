@@ -8,8 +8,15 @@ import {
   user,
   UserCredential,
 } from '@angular/fire/auth';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+import {
+  collection,
+  doc,
+  Firestore,
+  getDoc,
+  setDoc,
+} from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { IUser } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +34,16 @@ export class AuthenticationService {
 
   getUser(): Signal<User | null> {
     return this._userSignal;
+  }
+
+  async getUserDetails(userId: string): Promise<IUser | null> {
+    const userDoc = doc(this.firestore, 'users', userId);
+    const docSnap = await getDoc(userDoc);
+    if (docSnap.exists()) {
+      return docSnap.data() as IUser;
+    } else {
+      return null;
+    }
   }
 
   signupUser(

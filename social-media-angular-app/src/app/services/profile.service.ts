@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDoc } from '@angular/fire/firestore';
-import { User } from '../models/user.interface';
+import { IUser } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +8,13 @@ import { User } from '../models/user.interface';
 export class ProfileService {
   private firestore = inject(Firestore);
 
-  async fetchUserById(id: string | null): Promise<User | null> {
+  async fetchUserById(id: string | null): Promise<IUser | null> {
     try {
       if (id) {
         const docRef = doc(this.firestore, 'users', id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          return docSnap.data() as User;
+          return docSnap.data() as IUser;
         } else {
           return null;
         }

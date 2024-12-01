@@ -5,10 +5,9 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { User } from '../../models/user.interface';
+import { IUser } from '../../models/user.interface';
 import { ProfileService } from '../../services/profile.service';
 import { FollowService } from '../../services/follow.service';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -24,7 +23,7 @@ export class ProfileHeaderComponent implements OnChanges {
   @Input() profileUserId!: string | null;
   @Input() isCurrentUser!: boolean;
 
-  user!: User | null;
+  user!: IUser | null;
   isFollowing!: Boolean;
 
   private profileService = inject(ProfileService);
