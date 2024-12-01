@@ -6,3 +6,9 @@
 .post-container {
   border: 5px solid lightgray;
 }
+
+.likes-container {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
