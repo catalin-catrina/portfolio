@@ -107,6 +107,7 @@ export class PostsService {
       post: post,
       imageUrl: imageUrl,
       createdAt: serverTimestamp(),
+      likesCount: 0,
     });
   }
 
