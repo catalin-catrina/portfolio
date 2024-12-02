@@ -1,13 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import {
+  collection,
   doc,
   Firestore,
   getDoc,
+  getDocs,
   increment,
+  onSnapshot,
+  query,
   runTransaction,
   serverTimestamp,
+  where,
 } from '@angular/fire/firestore';
 import { IUser } from '../models/user.interface';
+import { Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -70,8 +76,27 @@ export class LikesService {
     }
   }
 
-  getUsersWhoLikedPost(postId: string): Promise<IUser[]> {
-    const postRef = doc(this.firestore, `posts/${postId}`);
+  getUsersWhoLikedPost(postId: string): Observable<IUser[]> {
+    const likesCollection = collection(this.firestore, `posts/${postId}/likes`);
+    return new Observable<string[]>((observer) => {
+      const unsub = onSnapshot(
+        likesCollection,
+        (snapshot) => {
+          const likers = snapshot.docs.map((doc) => doc.id);
+          observer.next(likers);
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    }).pipe(
+      switchMap(async (usersIds: string[]) => {
+        const usersCollection = collection(this.firestore, 'users');
+        const q = query(usersCollection, where('uid', 'in', usersIds));
+        const querySnap = await getDocs(q);
+        return Promise.all(querySnap.docs.map((doc) => doc.data() as IUser));
+      })
+    );
   }
 
   getLikedPosts(userId: string): Promise<Post[]> {}
