@@ -11,11 +11,18 @@ import { Subscription } from 'rxjs';
 import { Post } from '../../models/post.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
+import { LikesComponent } from '../likes/likes.component';
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, TimestampToDatePipe],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    TimestampToDatePipe,
+    LikesComponent,
+  ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',
 })

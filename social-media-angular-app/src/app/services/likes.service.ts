@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import {
   collection,
   doc,
+  documentId,
   Firestore,
   getDoc,
   getDocs,
@@ -14,12 +15,15 @@ import {
 } from '@angular/fire/firestore';
 import { IUser } from '../models/user.interface';
 import { Observable, switchMap } from 'rxjs';
+import { Post } from '../models/post.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LikesService {
   private firestore = inject(Firestore);
+  private postLikersSubscription: (() => void) | null = null;
+  private likedPostsSubscription: (() => void) | null = null;
 
   async likePost(postId: string, userId: string): Promise<void> {
     const postRef = doc(this.firestore, `posts/${postId}`);
@@ -72,16 +76,25 @@ export class LikesService {
       }
       return postSnap.data()['likesCount'];
     } catch (error) {
-      console.error('Error fetching the number of likes', error);
+      throw new Error('Error getting likes count');
     }
   }
 
   getUsersWhoLikedPost(postId: string): Observable<IUser[]> {
+    if (this.postLikersSubscription) {
+      this.postLikersSubscription();
+      this.postLikersSubscription = null;
+    }
+
     const likesCollection = collection(this.firestore, `posts/${postId}/likes`);
     return new Observable<string[]>((observer) => {
       const unsub = onSnapshot(
         likesCollection,
         (snapshot) => {
+          if (snapshot.metadata.hasPendingWrites) {
+            return;
+          }
+
           const likers = snapshot.docs.map((doc) => doc.id);
           observer.next(likers);
         },
@@ -89,6 +102,7 @@ export class LikesService {
           observer.error(error);
         }
       );
+      this.postLikersSubscription = unsub;
     }).pipe(
       switchMap(async (usersIds: string[]) => {
         const usersCollection = collection(this.firestore, 'users');
@@ -99,5 +113,41 @@ export class LikesService {
     );
   }
 
-  getLikedPosts(userId: string): Promise<Post[]> {}
+  getLikedPosts(userId: string): Observable<Post[]> {
+    if (this.likedPostsSubscription) {
+      this.likedPostsSubscription();
+    }
+
+    const usersCollection = collection(this.firestore, `users/${userId}/likes`);
+    return new Observable<string[]>((observer) => {
+      const unsub = onSnapshot(
+        usersCollection,
+        (snapshot) => {
+          if (snapshot.metadata.hasPendingWrites) {
+            return;
+          }
+
+          const posts = snapshot.docs.map((doc) => {
+            return doc.id;
+          });
+          observer.next(posts);
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+      this.likedPostsSubscription = unsub;
+    }).pipe(
+      switchMap(async (postsIds: string[]) => {
+        const postsCollection = collection(this.firestore, 'posts');
+        const q = query(postsCollection, where(documentId(), 'in', postsIds));
+        const querySnap = await getDocs(q);
+        return Promise.all(
+          querySnap.docs.map((doc) => {
+            return doc.data() as Post;
+          })
+        );
+      })
+    );
+  }
 }

@@ -1,0 +1,14 @@
+.likes-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.likedPost {
+  fill: #1177dd;
+}
+
+.unlikedPost {
+  fill: #dddddd;
+}

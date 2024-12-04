@@ -2,11 +2,12 @@ import { Component, Input, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PostsComponent } from '../posts/posts.component';
+import { LikedPostsComponent } from '../liked-posts/liked-posts.component';
 
 @Component({
   selector: 'app-profile-tabs',
   standalone: true,
-  imports: [MatTabsModule, CommonModule, PostsComponent],
+  imports: [MatTabsModule, CommonModule, PostsComponent, LikedPostsComponent],
   templateUrl: './profile-tabs.component.html',
   styleUrl: './profile-tabs.component.scss',
 })

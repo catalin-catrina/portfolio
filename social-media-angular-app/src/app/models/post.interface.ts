@@ -5,5 +5,6 @@ export interface Post {
   userId: string;
   post: string;
   imageUrl: string;
+  likesCount: number;
   createdAt: Timestamp;
 }
