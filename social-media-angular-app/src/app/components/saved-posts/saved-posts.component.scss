@@ -1,0 +1,8 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.post-container {
+  border: 5px solid lightgray;
+}

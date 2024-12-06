@@ -15,10 +15,10 @@ import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
   styleUrl: './liked-posts.component.scss',
 })
 export class LikedPostsComponent {
+  likedPosts: Post[] = [];
+
   private likesService = inject(LikesService);
   private authService = inject(AuthenticationService);
-
-  likedPosts: Post[] = [];
 
   user = this.authService.getUser();
   getPostsEffect = effect(() => {

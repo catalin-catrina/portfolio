@@ -3,6 +3,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  documentId,
   Firestore,
   getDoc,
   getDocs,
@@ -76,7 +77,7 @@ export class SavedPostsService {
     }).pipe(
       switchMap(async (posts: string[]) => {
         const postsCollection = collection(this.firestore, 'posts');
-        const q = query(postsCollection, where('postId', 'in', posts));
+        const q = query(postsCollection, where(documentId(), 'in', posts));
         const querySnap = await getDocs(q);
         return Promise.all(querySnap.docs.map((doc) => doc.data() as Post));
       })

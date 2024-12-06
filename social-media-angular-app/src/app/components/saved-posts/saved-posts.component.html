@@ -1,1 +1,12 @@
-<p>saved-posts works!</p>
+<div class="grid-container">
+  <div
+    class="post-container"
+    *ngFor="let post of savedPosts"
+    [routerLink]="['/post', post.id]"
+    routerLinkActive="router-link-active"
+  >
+    <p>{{ post.post }}</p>
+    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+    <img [src]="post.imageUrl" />
+  </div>
+</div>
