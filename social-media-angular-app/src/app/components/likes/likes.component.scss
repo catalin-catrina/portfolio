@@ -2,6 +2,13 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
+}
+
+.like-svg {
+  cursor: pointer;
+}
+
+.likes {
   cursor: pointer;
 }
 
@@ -11,4 +18,8 @@
 
 .unlikedPost {
   fill: #dddddd;
+}
+
+.hide-element {
+  display: none;
 }

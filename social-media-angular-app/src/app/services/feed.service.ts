@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, OnDestroy } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import {
@@ -18,7 +18,7 @@ import { Post } from '../models/post.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class FeedService implements OnDestroy {
+export class FeedService {
   private followedUsers: string[] = [];
   private lastVisible: DocumentData | null = null;
 
@@ -131,12 +131,5 @@ export class FeedService implements OnDestroy {
     this.postsSubject.next([]);
     this.noMoreDataSubject.next(false);
     this.lastVisible = null;
-  }
-
-  ngOnDestroy(): void {
-    if (this.followSubscription) {
-      this.followSubscription();
-    }
-    this.subscriptions.unsubscribe();
   }
 }

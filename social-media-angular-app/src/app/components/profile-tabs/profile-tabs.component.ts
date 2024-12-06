@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PostsComponent } from '../posts/posts.component';
 import { LikedPostsComponent } from '../liked-posts/liked-posts.component';
+import { SavedPostsComponent } from '../saved-posts/saved-posts.component';
 
 @Component({
   selector: 'app-profile-tabs',
   standalone: true,
-  imports: [MatTabsModule, CommonModule, PostsComponent, LikedPostsComponent],
+  imports: [
+    MatTabsModule,
+    CommonModule,
+    PostsComponent,
+    LikedPostsComponent,
+    SavedPostsComponent,
+  ],
   templateUrl: './profile-tabs.component.html',
   styleUrl: './profile-tabs.component.scss',
 })
