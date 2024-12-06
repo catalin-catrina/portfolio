@@ -2,8 +2,8 @@
 
 ### Why This Project Stands Out
 
-- **Custom-Built UI Components:** Every UI component in this application is designed and developed entirely by me. This ensures a unique and tailored user experience without relying on third-party UI libraries such as Angular Material or PrimeNG (which I like and normally use, but this project has self-educational purposes).
-  
+- **Custom-Built UI Components:** Every UI component in this application is designed and developed entirely by me, without relying on third-party UI libraries such as Angular Material or PrimeNG. While I typically use these libraries in professional settings, my personal projects prioritize deeply understanding how to implement the UI components that others usually import.
+
 - **100% Original Work:** While many portfolio projects are based on tutorials or courses from YouTube or other platforms like Udemy, my project is entirely built from scratch by me. This project showcases my ability to design and develop scalable, maintainable frontend architectures without relying on copy-pasted code or external UI libraries.
 
 ### Work in Progress
@@ -18,7 +18,7 @@ This project is a work in progress, and I'm continuously enhancing its features 
   - Sign Up, Login, Logout
   - Password Recovery
 - **Profile Management**
-  - Create and edit user profiles
+  - User profile management (edit, delete).
   - Upload profile pictures and cover photos
 - **Real-time Feed**
   - Post creation, editing, and deletion
@@ -55,16 +55,16 @@ This project is a work in progress, and I'm continuously enhancing its features 
 
 - **Completed:**
   - User Authentication
-  - Profile Management
   - User searching + Algolia integration
   - Post Creation and Interaction
   - Comments
   - Feed
+  - Likes
  
 - **In progress:**
-  - Likes
   - Saving posts
   - Sharing
+  - Profile Management
 
 - **To Do:**
   - Implementing Real-time Notifications
