@@ -13,6 +13,8 @@ import { Post } from '../../models/post.interface';
 import { PostsService } from '../../services/posts.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
+import { LikesComponent } from '../likes/likes.component';
+import { SavePostComponent } from '../save-post/save-post.component';
 
 @Component({
   selector: 'app-posts',
@@ -24,6 +26,8 @@ import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
     RouterLinkActive,
     TimestampToDatePipe,
     DatePipe,
+    LikesComponent,
+    SavePostComponent,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',

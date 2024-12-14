@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrl: './save-post.component.scss',
 })
 export class SavePostComponent implements OnInit {
-  @Input() post!: Post;
+  @Input() post!: Post | ((Post & { userName: string }) | null);
 
   isSaved = false;
 
@@ -22,7 +22,7 @@ export class SavePostComponent implements OnInit {
   user = this.userSignal();
 
   ngOnInit(): void {
-    if (this.post.id && this.user) {
+    if (this.post && this.post.id && this.user) {
       this.savedPostsService
         .hasUserSavedPost(this.post.id, this.user.uid)
         .then((hasUserSavedPost: boolean) => {

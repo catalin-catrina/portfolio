@@ -13,7 +13,7 @@ import { IUser } from '../../models/user.interface';
   styleUrl: './likes.component.scss',
 })
 export class LikesComponent implements OnInit {
-  @Input() post!: Post;
+  @Input() post!: Post | ((Post & { userName: string }) | null);
   @Input() feedLikes = false;
   @Input() profileLikes = false;
 
@@ -28,7 +28,7 @@ export class LikesComponent implements OnInit {
   userLikedPost!: boolean;
 
   ngOnInit(): void {
-    if (this.post.id && this.user) {
+    if (this.post && this.post.id && this.user) {
       this.likesService
         .hasUserLikedPost(this.post.id, this.user.uid)
         .then((hasUserLikedPost) => {
@@ -38,7 +38,7 @@ export class LikesComponent implements OnInit {
   }
 
   async handleLike(postId: string | undefined) {
-    if (this.user && postId) {
+    if (this.post && this.user && postId) {
       if (this.userLikedPost) {
         this.likesService.unlikePost(postId, this.user.uid);
         this.userLikedPost = false;
@@ -56,7 +56,7 @@ export class LikesComponent implements OnInit {
       this.likesService
         .getUsersWhoLikedPost(postId)
         .subscribe((users: IUser[]) => {
-          console.log(users)
+          console.log(users);
           this.postLikers = users;
         });
     }

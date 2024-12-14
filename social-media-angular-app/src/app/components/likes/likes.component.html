@@ -1,5 +1,5 @@
 <div class="likes-container" *ngIf="feedLikes">
-  <div class="like-svg" (click)="handleLike(post.id)">
+  <div class="like-svg" (click)="handleLike(post?.id)">
     <svg
       width="30px"
       height="30px"
@@ -13,8 +13,8 @@
       />
     </svg>
   </div>
-  <div class="likes" (click)="oneLikesClicked(post.id)">
-    {{ post.likesCount }}
+  <div class="likes" (click)="oneLikesClicked(post?.id)">
+    {{ post?.likesCount }}
   </div>
 </div>
 
