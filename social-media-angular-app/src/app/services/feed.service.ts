@@ -1,6 +1,6 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import {
   collection,
   DocumentData,
@@ -27,7 +27,6 @@ export class FeedService {
   readonly posts$ = this.postsSubject.asObservable();
   readonly noMoreData$ = this.noMoreDataSubject.asObservable();
 
-  private subscriptions: Subscription = new Subscription();
   private followSubscription: (() => void) | null = null;
 
   private firestore = inject(Firestore);

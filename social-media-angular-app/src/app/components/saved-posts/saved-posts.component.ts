@@ -1,5 +1,5 @@
 import { Component, effect, inject } from '@angular/core';
-import { SavedPostsService } from '../../services/saved-posts.service';
+import { PostSavingService } from '../../services/post-saving.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Post } from '../../models/post.interface';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class SavedPostsComponent {
   savedPosts: Post[] = [];
 
-  private savedPostsService = inject(SavedPostsService);
+  private savedPostsService = inject(PostSavingService);
   private authService = inject(AuthenticationService);
   userSignal = this.authService.getUser();
 

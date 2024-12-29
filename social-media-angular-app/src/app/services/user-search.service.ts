@@ -17,10 +17,6 @@ export class UserSearchService {
   private algoliaService = inject(AlgoliaService);
 
   async searchUsers(query: string) {
-    //   const usersCollection = collection(this.firestore, 'users');
-    //   const q = query(usersCollection, where('fullname', '==', name));
-    //   const querySnapshot = await getDocs(q);
-    //   return querySnapshot.docs.map((doc) => doc.data());
     const response = await this.algoliaService.search(query);
     return response.hits;
   }

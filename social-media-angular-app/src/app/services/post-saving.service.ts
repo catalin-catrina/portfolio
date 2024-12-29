@@ -18,7 +18,7 @@ import { Post } from '../models/post.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class SavedPostsService {
+export class PostSavingService {
   private firestore = inject(Firestore);
   private savedPostsSubscription: (() => void) | null = null;
 

@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Post } from '../../models/post.interface';
 import { CommonModule } from '@angular/common';
-import { SavedPostsService } from '../../services/saved-posts.service';
+import { PostSavingService } from '../../services/post-saving.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class SavePostComponent implements OnInit {
 
   isSaved = false;
 
-  private savedPostsService = inject(SavedPostsService);
+  private savedPostsService = inject(PostSavingService);
   private authService = inject(AuthenticationService);
   userSignal = this.authService.getUser();
   user = this.userSignal();
