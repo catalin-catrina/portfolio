@@ -17,11 +17,16 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user.interface';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  userDetails!: IUser | null;
+  userIsAvailableSubject = new BehaviorSubject(false);
+  userIsAvailable$ = this.userIsAvailableSubject.asObservable();
+
   private auth = inject(Auth);
   private firestore = inject(Firestore);
   private router = inject(Router);
@@ -32,18 +37,15 @@ export class AuthenticationService {
     initialValue: null,
   });
 
-  userDetails!: IUser | null;
-
   constructor() {
-    effect(() => {
-      const user = this.getUser();
-      if (user()) {
-        const userId = user()?.uid;
-        if (userId) {
-          this.getUserDetails(userId).then(
-            (user: IUser | null) => (this.userDetails = user)
-          );
-        }
+    this._user$.subscribe((user: User | null) => {
+      if (user) {
+        this.userIsAvailableSubject.next(true);
+        this.getUserDetails(user.uid).then((user: IUser | null) => {
+          this.userDetails = user;
+        });
+      } else {
+        this.userIsAvailableSubject.next(false);
       }
     });
   }
@@ -112,6 +114,7 @@ export class AuthenticationService {
       .signOut()
       .then(() => {
         this.router.navigate(['/login']);
+        this.userIsAvailableSubject.next(false);
       })
       .catch((error) => {
         console.log('Error logging out: ', error.message);

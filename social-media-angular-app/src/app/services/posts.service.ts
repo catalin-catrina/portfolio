@@ -57,33 +57,20 @@ export class PostsService {
     }
   }
 
-  async getUserPosts(
-    userId: string
-  ): Promise<((Post & { userName: string }) | null)[]> {
+  async getUserPosts(userId: string): Promise<Post[]> {
     const postsCollection = collection(this.firestore, 'posts');
     const q = query(postsCollection, where('userId', '==', userId));
     const querySnapshot = await getDocs(q);
 
-    return Promise.all(
-      querySnapshot.docs.map(async (document) => {
-        const postData = document.data() as Post;
-
-        const userDocRef = doc(this.firestore, 'users', postData.userId);
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data() as IUser;
-          const userName = userData.fullname;
-
-          return {
-            ...postData,
-            id: document.id,
-            userName,
-          } as Post & { userName: string };
-        } else {
-          return null;
-        }
-      })
+    const posts = querySnapshot.docs.map(
+      (doc) =>
+        ({
+          ...doc.data(),
+          id: doc.id,
+        } as Post)
     );
+
+    return posts;
   }
 
   async getProfileUserPosts(id: string | null): Promise<Post[]> {

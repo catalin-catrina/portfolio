@@ -4,11 +4,12 @@ import { LikesService } from '../../services/likes.service';
 import { Post } from '../../models/post.interface';
 import { AuthenticationService } from '../../services/authentication.service';
 import { IUser } from '../../models/user.interface';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-likes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './likes.component.html',
   styleUrl: './likes.component.scss',
 })
@@ -25,7 +26,7 @@ export class LikesComponent implements OnInit {
   private userSignal = this.authService.getUser();
   user = this.userSignal();
 
-  userLikedPost!: boolean;
+  userLikedPost = false;
 
   ngOnInit(): void {
     if (this.post && this.post.id && this.user) {

@@ -1,4 +1,4 @@
-<div class="likes-container" *ngIf="feedLikes">
+<div class="likes-container" *ngIf="feedLikes || profileLikes">
   <div class="like-svg" (click)="handleLike(post?.id)">
     <svg
       width="30px"
@@ -23,6 +23,11 @@
   [ngClass]="postLikers && postLikers.length ? '' : 'hide-element'"
 >
   <div class="post-liker" *ngFor="let user of postLikers">
-    {{ user.fullname }}
+    <div
+      [routerLink]="['/profile', user.uid]"
+      routerLinkActive="routerLinkActive"
+    >
+      {{ user.fullname }}
+    </div>
   </div>
 </div>

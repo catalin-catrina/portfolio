@@ -21,9 +21,10 @@ import { Post } from '../models/post.interface';
   providedIn: 'root',
 })
 export class LikesService {
-  private firestore = inject(Firestore);
   private postLikersSubscription: (() => void) | null = null;
   private likedPostsSubscription: (() => void) | null = null;
+
+  private firestore = inject(Firestore);
 
   async likePost(postId: string, userId: string): Promise<void> {
     const postRef = doc(this.firestore, `posts/${postId}`);

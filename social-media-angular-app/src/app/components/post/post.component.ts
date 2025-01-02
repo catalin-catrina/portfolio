@@ -7,6 +7,7 @@ import { months } from '../../constants/constants';
 import { CreateCommentComponent } from '../create-comment/create-comment.component';
 import { CommentsComponent } from '../comments/comments.component';
 import { Post } from '../../models/post.interface';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -17,31 +18,18 @@ import { Post } from '../../models/post.interface';
 })
 export class PostComponent implements OnInit {
   months = months;
-  postId!: string;
   post!: (Post & { userName: string }) | null;
 
   private route = inject(ActivatedRoute);
   private postsService = inject(PostsService);
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.postId = params['id'];
-    });
-
-    this.postsService
-      .getUserPostById(this.postId)
-      .then((post) => {
-        if (post) {
-          this.post = {
-            ...post,
-            id: this.postId,
-          };
-        } else {
-          console.warn('Post not found');
-        }
-      })
-      .catch((error) => {
-        console.error('Failed to load post:', error.message);
+    this.route.params
+      .pipe(
+        switchMap((params) => this.postsService.getUserPostById(params['id']))
+      )
+      .subscribe((post) => {
+        this.post = post;
       });
   }
 }

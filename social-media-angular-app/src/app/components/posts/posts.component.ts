@@ -4,7 +4,6 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
@@ -32,11 +31,11 @@ import { SavePostComponent } from '../save-post/save-post.component';
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
-export class PostsComponent implements OnInit, OnChanges {
+export class PostsComponent implements OnChanges {
   @Input() userId!: string | null;
 
   visitedProfilePosts!: Promise<Post[]>;
-  userPosts!: Promise<((Post & { userName: string }) | null)[]>;
+  userPosts!: Promise<Post[]>;
 
   private postsService = inject(PostsService);
   private authService = inject(AuthenticationService);
@@ -52,21 +51,6 @@ export class PostsComponent implements OnInit, OnChanges {
         }
       }
     });
-  }
-
-  ngOnInit() {
-    if (this.userId) {
-      this.visitedProfilePosts = this.postsService.getProfileUserPosts(
-        this.userId
-      );
-    } else {
-      if (this.userSignal()) {
-        const userId = this.userSignal()?.uid;
-        if (userId) {
-          this.userPosts = this.postsService.getUserPosts(userId);
-        }
-      }
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

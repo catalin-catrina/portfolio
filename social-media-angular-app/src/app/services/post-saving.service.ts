@@ -19,8 +19,9 @@ import { Post } from '../models/post.interface';
   providedIn: 'root',
 })
 export class PostSavingService {
-  private firestore = inject(Firestore);
   private savedPostsSubscription: (() => void) | null = null;
+
+  private firestore = inject(Firestore);
 
   async savePost(postId: string, userId: string): Promise<void> {
     const savedPostRef = doc(
@@ -50,6 +51,7 @@ export class PostSavingService {
   getSavedPosts(userId: string): Observable<Post[]> {
     if (this.savedPostsSubscription) {
       this.savedPostsSubscription();
+      this.savedPostsSubscription = null;
     }
 
     const savedPostsCollection = collection(
@@ -65,8 +67,8 @@ export class PostSavingService {
             return;
           }
 
-          const posts = snapshot.docs.map((doc) => doc.id);
-          observer.next(posts);
+          const postIDs = snapshot.docs.map((doc) => doc.id);
+          observer.next(postIDs);
         },
         (error) => {
           observer.error(error);
@@ -75,9 +77,9 @@ export class PostSavingService {
 
       this.savedPostsSubscription = unsub;
     }).pipe(
-      switchMap(async (posts: string[]) => {
+      switchMap(async (postIDs: string[]) => {
         const postsCollection = collection(this.firestore, 'posts');
-        const q = query(postsCollection, where(documentId(), 'in', posts));
+        const q = query(postsCollection, where(documentId(), 'in', postIDs));
         const querySnap = await getDocs(q);
         return Promise.all(querySnap.docs.map((doc) => doc.data() as Post));
       })

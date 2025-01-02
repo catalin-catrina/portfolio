@@ -7,8 +7,11 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, FeedComponent, SidebarComponent],
+  imports: [MatButtonModule, FeedComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  private authService = inject(AuthenticationService);
+  userDetails = this.authService.userDetails;
+}
