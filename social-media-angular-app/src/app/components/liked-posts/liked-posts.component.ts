@@ -7,11 +7,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
 
 @Component({
-  selector: 'app-liked-posts',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, TimestampToDatePipe],
-  templateUrl: './liked-posts.component.html',
-  styleUrl: './liked-posts.component.scss',
+    selector: 'app-liked-posts',
+    imports: [CommonModule, RouterLink, RouterLinkActive, TimestampToDatePipe],
+    templateUrl: './liked-posts.component.html',
+    styleUrl: './liked-posts.component.scss'
 })
 export class LikedPostsComponent {
   likedPosts: Post[] = [];

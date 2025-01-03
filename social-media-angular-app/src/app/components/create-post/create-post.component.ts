@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { PostsService } from '../../services/posts.service';
 
 @Component({
-  selector: 'app-create-post',
-  standalone: true,
-  imports: [FormsModule, MatInputModule, MatFormFieldModule, CommonModule],
-  templateUrl: './create-post.component.html',
-  styleUrl: './create-post.component.scss',
+    selector: 'app-create-post',
+    imports: [FormsModule, MatInputModule, MatFormFieldModule, CommonModule],
+    templateUrl: './create-post.component.html',
+    styleUrl: './create-post.component.scss'
 })
 export class CreatePostComponent {
   file: File | null = null;

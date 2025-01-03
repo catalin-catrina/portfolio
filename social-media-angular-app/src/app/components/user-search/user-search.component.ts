@@ -7,11 +7,10 @@ import { IUser } from '../../models/user.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-user-search',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './user-search.component.html',
-  styleUrl: './user-search.component.scss',
+    selector: 'app-user-search',
+    imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive],
+    templateUrl: './user-search.component.html',
+    styleUrl: './user-search.component.scss'
 })
 export class UserSearchComponent implements OnInit {
   searchForm: FormGroup;

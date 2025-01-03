@@ -13,11 +13,10 @@ import { Post } from '../../models/post.interface';
 import { months } from '../../constants/constants';
 
 @Component({
-  selector: 'app-comments',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './comments.component.html',
-  styleUrl: './comments.component.scss',
+    selector: 'app-comments',
+    imports: [CommonModule],
+    templateUrl: './comments.component.html',
+    styleUrl: './comments.component.scss'
 })
 export class CommentsComponent implements OnChanges {
   @Input() post: Post | null = null;

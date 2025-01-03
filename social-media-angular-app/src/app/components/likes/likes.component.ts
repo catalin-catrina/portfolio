@@ -7,11 +7,10 @@ import { IUser } from '../../models/user.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-likes',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './likes.component.html',
-  styleUrl: './likes.component.scss',
+    selector: 'app-likes',
+    imports: [CommonModule, RouterLink, RouterLinkActive],
+    templateUrl: './likes.component.html',
+    styleUrl: './likes.component.scss'
 })
 export class LikesComponent implements OnInit {
   @Input() post!: Post | ((Post & { userName: string }) | null);

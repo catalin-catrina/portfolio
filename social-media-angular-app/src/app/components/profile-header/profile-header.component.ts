@@ -13,11 +13,10 @@ import { FollowService } from '../../services/follow.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-profile-header',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './profile-header.component.html',
-  styleUrl: './profile-header.component.scss',
+    selector: 'app-profile-header',
+    imports: [CommonModule],
+    templateUrl: './profile-header.component.html',
+    styleUrl: './profile-header.component.scss'
 })
 export class ProfileHeaderComponent implements OnChanges {
   @Input() profileUserId!: string | null;

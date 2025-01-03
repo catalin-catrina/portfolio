@@ -6,17 +6,16 @@ import { LikedPostsComponent } from '../liked-posts/liked-posts.component';
 import { SavedPostsComponent } from '../saved-posts/saved-posts.component';
 
 @Component({
-  selector: 'app-profile-tabs',
-  standalone: true,
-  imports: [
-    MatTabsModule,
-    CommonModule,
-    PostsComponent,
-    LikedPostsComponent,
-    SavedPostsComponent,
-  ],
-  templateUrl: './profile-tabs.component.html',
-  styleUrl: './profile-tabs.component.scss',
+    selector: 'app-profile-tabs',
+    imports: [
+        MatTabsModule,
+        CommonModule,
+        PostsComponent,
+        LikedPostsComponent,
+        SavedPostsComponent,
+    ],
+    templateUrl: './profile-tabs.component.html',
+    styleUrl: './profile-tabs.component.scss'
 })
 export class ProfileTabsComponent {
   @Input() profileUserId!: string | null;

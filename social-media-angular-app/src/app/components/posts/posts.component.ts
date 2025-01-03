@@ -16,20 +16,19 @@ import { LikesComponent } from '../likes/likes.component';
 import { SavePostComponent } from '../save-post/save-post.component';
 
 @Component({
-  selector: 'app-posts',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsyncPipe,
-    RouterLink,
-    RouterLinkActive,
-    TimestampToDatePipe,
-    DatePipe,
-    LikesComponent,
-    SavePostComponent,
-  ],
-  templateUrl: './posts.component.html',
-  styleUrl: './posts.component.scss',
+    selector: 'app-posts',
+    imports: [
+        CommonModule,
+        AsyncPipe,
+        RouterLink,
+        RouterLinkActive,
+        TimestampToDatePipe,
+        DatePipe,
+        LikesComponent,
+        SavePostComponent,
+    ],
+    templateUrl: './posts.component.html',
+    styleUrl: './posts.component.scss'
 })
 export class PostsComponent implements OnChanges {
   @Input() userId!: string | null;

@@ -10,11 +10,10 @@ import { Post } from '../../models/post.interface';
 import { switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-post',
-  standalone: true,
-  imports: [CommonModule, CreateCommentComponent, CommentsComponent],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.scss',
+    selector: 'app-post',
+    imports: [CommonModule, CreateCommentComponent, CommentsComponent],
+    templateUrl: './post.component.html',
+    styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit {
   months = months;

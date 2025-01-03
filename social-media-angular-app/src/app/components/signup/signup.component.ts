@@ -7,17 +7,16 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    FormsModule,
-    CommonModule,
-  ],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss',
+    selector: 'app-signup',
+    imports: [
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        FormsModule,
+        CommonModule,
+    ],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
   authService = inject(AuthenticationService);

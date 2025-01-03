@@ -5,11 +5,10 @@ import { PostSavingService } from '../../services/post-saving.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-save-post',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './save-post.component.html',
-  styleUrl: './save-post.component.scss',
+    selector: 'app-save-post',
+    imports: [CommonModule],
+    templateUrl: './save-post.component.html',
+    styleUrl: './save-post.component.scss'
 })
 export class SavePostComponent implements OnInit {
   @Input() post!: Post | ((Post & { userName: string }) | null);
