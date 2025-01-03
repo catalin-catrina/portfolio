@@ -1,21 +1,19 @@
-<ng-container *ngIf="isCurrentUser">
-  <mat-tab-group animationDuration="0ms">
-    <mat-tab label="Posts">
-      <app-posts></app-posts>
-    </mat-tab>
-    <mat-tab label="Liked">
-      <app-liked-posts></app-liked-posts>
-    </mat-tab>
-    <mat-tab label="Saved">
-      <app-saved-posts></app-saved-posts>
-    </mat-tab>
-  </mat-tab-group>
-</ng-container>
-
-<ng-container *ngIf="!isCurrentUser">
-  <mat-tab-group animationDuration="0ms">
-    <mat-tab label="Posts">
-      <app-posts [userId]="profileUserId"></app-posts>
-    </mat-tab>
-  </mat-tab-group>
-</ng-container>
+@if (isCurrentUser) {
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Posts">
+    <app-posts></app-posts>
+  </mat-tab>
+  <mat-tab label="Liked">
+    <app-liked-posts></app-liked-posts>
+  </mat-tab>
+  <mat-tab label="Saved">
+    <app-saved-posts></app-saved-posts>
+  </mat-tab>
+</mat-tab-group>
+} @else if(!isCurrentUser) {
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Posts">
+    <app-posts [userId]="profileUserId"></app-posts>
+  </mat-tab>
+</mat-tab-group>
+}

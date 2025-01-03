@@ -1,10 +1,11 @@
-<ng-container *ngIf="!isLoading()"
-  ><app-profile-header
-    [profileUserId]="profileUserId()"
-    [isCurrentUser]="isCurrentUser()"
-  ></app-profile-header>
-  <app-profile-tabs
-    [profileUserId]="profileUserId()"
-    [isCurrentUser]="isCurrentUser()"
-  ></app-profile-tabs>
-</ng-container>
+@if (!isLoading()) {
+<app-profile-header
+  [profileUserId]="profileUserId()"
+  [isCurrentUser]="isCurrentUser()"
+></app-profile-header>
+<app-profile-tabs
+  [profileUserId]="profileUserId()"
+  [isCurrentUser]="isCurrentUser()"
+></app-profile-tabs>
+
+}

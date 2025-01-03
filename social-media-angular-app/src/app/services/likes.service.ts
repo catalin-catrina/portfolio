@@ -128,10 +128,10 @@ export class LikesService {
             return;
           }
 
-          const posts = snapshot.docs.map((doc) => {
+          const postIDs = snapshot.docs.map((doc) => {
             return doc.id;
           });
-          observer.next(posts);
+          observer.next(postIDs);
         },
         (error) => {
           observer.error(error);
@@ -145,7 +145,10 @@ export class LikesService {
         const querySnap = await getDocs(q);
         return Promise.all(
           querySnap.docs.map((doc) => {
-            return doc.data() as Post;
+            return {
+              ...doc.data(),
+              id: doc.id,
+            } as Post;
           })
         );
       })

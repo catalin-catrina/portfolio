@@ -1,35 +1,21 @@
-<ng-container *ngIf="userId; else ownProfile">
-  <div class="grid-container" *ngIf="visitedProfilePosts | async as posts">
-    <div class="post-container" *ngFor="let post of posts">
-      <p>{{ post.post }}</p>
-      <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
-      <img
-        [src]="post.imageUrl"
-        [routerLink]="['/post', post.id]"
-        routerLinkActive="router-link-active"
-      />
-      <div class="post-interaction">
-        <app-likes [post]="post" [profileLikes]="true"></app-likes>
-        <app-save-post [post]="post"></app-save-post>
-      </div>
+@if ((userId ? visitedProfilePosts : userPosts) | async; as posts ) {
+<div class="grid-container">
+  @for (post of posts; track post.id) {
+  <div class="post-container">
+    <p>{{ post.post }}</p>
+    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+    <img
+      [src]="post.imageUrl"
+      [routerLink]="['/post', post.id]"
+      routerLinkActive="router-link-active"
+    />
+    <div class="post-interaction">
+      <app-likes [post]="post" [profileLikes]="true"></app-likes>
+      <app-save-post [post]="post"></app-save-post>
     </div>
   </div>
-</ng-container>
-
-<ng-template #ownProfile>
-  <div class="grid-container" *ngIf="userPosts | async as posts">
-    <div class="post-container" *ngFor="let post of posts">
-      <p>{{ post?.post }}</p>
-      <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
-      <img
-        [src]="post?.imageUrl"
-        [routerLink]="['/post', post?.id]"
-        routerLinkActive="router-link-active"
-      />
-      <div class="post-interaction">
-        <app-likes [post]="post" [profileLikes]="true"></app-likes>
-        <app-save-post [post]="post"></app-save-post>
-      </div>
-    </div>
-  </div>
-</ng-template>
+  } @empty {
+  <h3>No posts yet.</h3>
+  }
+</div>
+}

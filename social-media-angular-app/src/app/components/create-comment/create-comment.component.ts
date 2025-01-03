@@ -5,10 +5,10 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Post } from '../../models/post.interface';
 
 @Component({
-    selector: 'app-create-comment',
-    imports: [FormsModule],
-    templateUrl: './create-comment.component.html',
-    styleUrl: './create-comment.component.scss'
+  selector: 'app-create-comment',
+  imports: [FormsModule],
+  templateUrl: './create-comment.component.html',
+  styleUrl: './create-comment.component.scss',
 })
 export class CreateCommentComponent {
   @Input() post: Post | null = null;

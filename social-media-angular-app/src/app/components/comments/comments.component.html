@@ -1,5 +1,6 @@
 <div class="comments">
-  <div class="comment" *ngFor="let comment of comments">
+  @for (comment of comments; track comment.id) {
+  <div class="comment">
     <div class="user-name">user: {{ comment.userName }}</div>
     <div class="user-comment">comment: {{ comment.comment }}</div>
     <div class="date">
@@ -8,4 +9,5 @@
       {{ comment.createdAt.getHours() }}:{{ comment.createdAt.getMinutes() }} -->
     </div>
   </div>
+  }
 </div>

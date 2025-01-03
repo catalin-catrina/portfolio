@@ -8,8 +8,10 @@
   <mat-form-field>
     <input type="text" name="description" matInput ngModel />
   </mat-form-field>
-  <div *ngIf="imageUrl">
+  @if (imageUrl) {
+  <div>
     <img [src]="imageUrl" />
   </div>
+  }
   <button class="btn" type="submit">Upload</button>
 </form>

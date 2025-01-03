@@ -3,13 +3,17 @@
   <button type="button">Search</button>
 </form>
 
-<div *ngIf="searchResults.length">
+@if (searchResults.length) {
+<div>
   <h3>Search Results:</h3>
   <ul>
-    <li *ngFor="let user of searchResults">
+    @for (user of searchResults; track user.uid) {
+    <li>
       <a [routerLink]="['/profile', user.uid]" routerLinkActive>{{
         user.displayName
       }}</a>
     </li>
+    }
   </ul>
 </div>
+}

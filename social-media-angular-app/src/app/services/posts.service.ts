@@ -37,6 +37,7 @@ export class PostsService {
       const postDocSnapshot = await getDoc(postDocRef);
       if (postDocSnapshot.exists()) {
         const postData = postDocSnapshot.data() as Post;
+        const id = postDocSnapshot.id;
 
         const userDocRef = doc(this.firestore, 'users', postData.userId);
         const userDocSnapshot = await getDoc(userDocRef);
@@ -44,7 +45,9 @@ export class PostsService {
           const userData = userDocSnapshot.data() as IUser;
           const userName = userData.fullname;
 
-          return { ...postData, userName } as Post & { userName: string };
+          return { ...postData, id, userName } as Post & {
+            userName: string;
+          };
         } else {
           return null;
         }

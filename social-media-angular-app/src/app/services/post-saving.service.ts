@@ -81,7 +81,15 @@ export class PostSavingService {
         const postsCollection = collection(this.firestore, 'posts');
         const q = query(postsCollection, where(documentId(), 'in', postIDs));
         const querySnap = await getDocs(q);
-        return Promise.all(querySnap.docs.map((doc) => doc.data() as Post));
+        return Promise.all(
+          querySnap.docs.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+                id: doc.id,
+              } as Post)
+          )
+        );
       })
     );
   }

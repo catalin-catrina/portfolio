@@ -8,10 +8,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { distinctUntilChanged, filter, map, of, switchMap } from 'rxjs';
 
 @Component({
-    selector: 'app-saved-posts',
-    imports: [CommonModule, TimestampToDatePipe, RouterLink, RouterLinkActive],
-    templateUrl: './saved-posts.component.html',
-    styleUrl: './saved-posts.component.scss'
+  selector: 'app-saved-posts',
+  imports: [CommonModule, TimestampToDatePipe, RouterLink, RouterLinkActive],
+  templateUrl: './saved-posts.component.html',
+  styleUrl: './saved-posts.component.scss',
 })
 export class SavedPostsComponent implements OnInit {
   savedPosts: Post[] = [];

@@ -1,5 +1,6 @@
 <div class="grid-container">
-  <div *ngFor="let post of posts" class="post-container">
+  @for (post of posts; track post.id) {
+  <div class="post-container">
     <h2>{{ post.post }}</h2>
     <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
     <img
@@ -12,4 +13,5 @@
       <app-save-post [post]="post"></app-save-post>
     </div>
   </div>
+  }
 </div>

@@ -21,12 +21,11 @@
             ngModel
             #emailInput="ngModel"
           />
-          <mat-error *ngIf="emailInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
-          <mat-error *ngIf="emailInput.hasError('email')"
-            >Email is invalid</mat-error
-          >
+          @if (emailInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          } @if (emailInput.hasError('email')) {
+          <mat-error>Email is invalid</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
@@ -39,9 +38,9 @@
             ngModel
             #fullnameInput="ngModel"
           />
-          <mat-error *ngIf="fullnameInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
+          @if (fullnameInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
@@ -54,9 +53,9 @@
             ngModel
             #usernameInput="ngModel"
           />
-          <mat-error *ngIf="usernameInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
+          @if (usernameInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
@@ -69,9 +68,9 @@
             ngModel
             #passwordInput="ngModel"
           />
-          <mat-error *ngIf="passwordInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
+          @if (passwordInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          }
         </mat-form-field>
 
         <div class="container__middle__text">

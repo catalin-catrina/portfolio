@@ -19,12 +19,11 @@
             #emailInput="ngModel"
             matInput
           />
-          <mat-error *ngIf="emailInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
-          <mat-error *ngIf="emailInput.hasError('email')"
-            >Email is invalid</mat-error
-          >
+          @if (emailInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          } @if (emailInput.hasError('email')) {
+          <mat-error>Email is invalid</mat-error>
+          }
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
@@ -36,9 +35,9 @@
             #passwordInput="ngModel"
             matInput
           />
-          <mat-error *ngIf="passwordInput.hasError('required')"
-            >Field must be completed</mat-error
-          >
+          @if (passwordInput.hasError('required')) {
+          <mat-error>Field must be completed</mat-error>
+          }
         </mat-form-field>
         <button type="submit" mat-raised-button [disabled]="form.invalid">
           Log in
