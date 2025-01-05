@@ -21,7 +21,7 @@ export class CreatePostComponent {
   onSubmit(form: NgForm) {
     const description = form.value.description;
     if (this.file) {
-      this.postsService.writeImageToStorage(this.file).then((imageUrl) => {
+      this.postsService.writeImageToStorage(this.file).then((imageUrl: string) => {
         this.postsService.writePostToFirestore(description, imageUrl);
       });
     }

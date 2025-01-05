@@ -26,7 +26,7 @@ export class PostSavingService {
   async savePost(postId: string, userId: string): Promise<void> {
     const savedPostRef = doc(
       this.firestore,
-      `users/${userId}/saved-posts/${postId}`
+      `users/${userId}/saved_posts/${postId}`
     );
     await setDoc(savedPostRef, {});
   }
@@ -56,7 +56,7 @@ export class PostSavingService {
 
     const savedPostsCollection = collection(
       this.firestore,
-      `users/${userId}/saved-posts`
+      `users/${userId}/saved_posts`
     );
 
     return new Observable<string[]>((observer) => {

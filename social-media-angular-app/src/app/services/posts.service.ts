@@ -101,7 +101,7 @@ export class PostsService {
     });
   }
 
-  writeImageToStorage(file: File) {
+  writeImageToStorage(file: File): Promise<string> {
     const storageRef = ref(
       this.storage,
       `users/${this.userSignal()?.uid}/${file.name}`

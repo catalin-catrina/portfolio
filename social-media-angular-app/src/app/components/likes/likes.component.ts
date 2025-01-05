@@ -51,12 +51,11 @@ export class LikesComponent implements OnInit {
     }
   }
 
-  oneLikesClicked(postId: string | undefined) {
+  onLikesClicked(postId: string | undefined) {
     if (postId) {
       this.likesService
         .getUsersWhoLikedPost(postId)
         .subscribe((users: IUser[]) => {
-          console.log(users);
           this.postLikers = users;
         });
     }

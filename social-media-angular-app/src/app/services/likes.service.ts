@@ -96,8 +96,8 @@ export class LikesService {
             return;
           }
 
-          const likers = snapshot.docs.map((doc) => doc.id);
-          observer.next(likers);
+          const userIDs = snapshot.docs.map((doc) => doc.id);
+          observer.next(userIDs);
         },
         (error) => {
           observer.error(error);
