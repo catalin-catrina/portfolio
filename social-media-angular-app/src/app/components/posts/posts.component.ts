@@ -14,21 +14,23 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
 import { LikesComponent } from '../likes/likes.component';
 import { SavePostComponent } from '../save-post/save-post.component';
+import { SharePostComponent } from '../share-post/share-post.component';
 
 @Component({
-    selector: 'app-posts',
-    imports: [
-        CommonModule,
-        AsyncPipe,
-        RouterLink,
-        RouterLinkActive,
-        TimestampToDatePipe,
-        DatePipe,
-        LikesComponent,
-        SavePostComponent,
-    ],
-    templateUrl: './posts.component.html',
-    styleUrl: './posts.component.scss'
+  selector: 'app-posts',
+  imports: [
+    CommonModule,
+    AsyncPipe,
+    RouterLink,
+    RouterLinkActive,
+    TimestampToDatePipe,
+    DatePipe,
+    LikesComponent,
+    SavePostComponent,
+    SharePostComponent,
+  ],
+  templateUrl: './posts.component.html',
+  styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnChanges {
   @Input() userId!: string | null;

@@ -22,7 +22,8 @@ This project is a work in progress, and I'm continuously enhancing its features 
   - Upload profile pictures and cover photos
 - **Real-time Feed**
   - Post creation, editing, and deletion
-  - Like and comment on posts
+  - Liking, sharing, saving posts.
+  - Leaving comments.
   - Follow and unfollow other users
 - **Notifications**
   - Real-time alerts for likes, comments, new followers, and mentions
@@ -54,15 +55,17 @@ This project is a work in progress, and I'm continuously enhancing its features 
 ### Current Progress
 
 - **Completed:**
+
   - User Authentication
   - User searching + Algolia integration
   - Post Creation and Interaction
   - Comments
   - Feed
   - Likes
- 
-- **In progress:**
   - Saving posts
+
+- **In progress:**
+
   - Sharing
   - Profile Management
 
@@ -72,8 +75,12 @@ This project is a work in progress, and I'm continuously enhancing its features 
   - Figma design
   - Implementing the deign
 
-## License
+## Usage Terms
 
-This project is licensed under the [MIT License](LICENSE).
+**Important:** This project is a personal portfolio piece and is intended for demonstration purposes only. All rights are reserved by **Catalin Catrina**. Unauthorized use, reproduction, or distribution of this code is strictly prohibited. If you wish to use or reference any part of this project, please contact me directly for permission.
+
+## Copyright
+
+© 2025 Catalin Catrina. All rights reserved.
 
 ---
