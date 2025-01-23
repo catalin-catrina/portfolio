@@ -10,3 +10,16 @@
 .post-interaction {
   display: flex;
 }
+
+.original-post-container {
+  border: 1px solid #333;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.card-upper {
+  font-size: 0.9rem;
+
+  display: flex;
+  justify-content: space-between;
+}

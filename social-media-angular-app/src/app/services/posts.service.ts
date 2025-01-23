@@ -65,15 +65,29 @@ export class PostsService {
     const q = query(postsCollection, where('userId', '==', userId));
     const querySnapshot = await getDocs(q);
 
-    const posts = querySnapshot.docs.map(
-      (doc) =>
-        ({
-          ...doc.data(),
-          id: doc.id,
-        } as Post)
-    );
+    const posts = querySnapshot.docs.map(async (postSnap) => {
+      const post = postSnap.data() as Post;
 
-    return posts;
+      if (post.originalPostId) {
+        const docRef = doc(this.firestore, 'posts', post.originalPostId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const originalPost = docSnap.data() as Post;
+          return {
+            ...post,
+            id: post.id,
+            originalPost: originalPost.post,
+          } as Post;
+        }
+      }
+
+      return {
+        ...postSnap.data(),
+        id: postSnap.id,
+      } as Post;
+    });
+
+    return Promise.all(posts);
   }
 
   async getProfileUserPosts(id: string | null): Promise<Post[]> {
@@ -94,11 +108,13 @@ export class PostsService {
     const postsCollection = collection(this.firestore, 'posts');
     addDoc(postsCollection, {
       userId: this.userSignal()?.uid,
+      userName: this.auth.userDetails?.displayName,
       post: post,
       imageUrl: imageUrl,
       createdAt: serverTimestamp(),
       likesCount: 0,
-    });
+      isShared: false,
+    } as Post);
   }
 
   writeImageToStorage(file: File): Promise<string> {

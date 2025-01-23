@@ -8,13 +8,7 @@ import {
   user,
   UserCredential,
 } from '@angular/fire/auth';
-import {
-  collection,
-  doc,
-  Firestore,
-  getDoc,
-  setDoc,
-} from '@angular/fire/firestore';
+import { doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user.interface';
 import { BehaviorSubject, Subscription } from 'rxjs';

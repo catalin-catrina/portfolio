@@ -1,8 +1,11 @@
 <div class="grid-container">
-  @for (post of posts; track post.id) {
+  @for (post of posts; track post.id) { @if (!post.isShared) {
   <div class="post-container">
+    <div class="card-upper">
+      <p>{{ post.userName }}</p>
+      <p>{{ post.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+    </div>
     <h2>{{ post.post }}</h2>
-    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
     <img
       [src]="post.imageUrl"
       [routerLink]="['/post', post.id]"
@@ -11,7 +14,30 @@
     <div class="post-interaction">
       <app-likes [post]="post" [feedLikes]="true"></app-likes>
       <app-save-post [post]="post"></app-save-post>
+      <app-share-post [post]="post"></app-share-post>
     </div>
   </div>
-  }
+  } @else {
+  <div class="post-container">
+    <div class="card-upper">
+      <p>{{ post.userName }}</p>
+      <p>{{ post.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+    </div>
+    <p>{{ post.post }}</p>
+    <div class="original-post-container">
+      <p>{{ post.sharedUserName }}</p>
+      <p>{{ post.originalPost }}</p>
+      <img
+        [src]="post.imageUrl"
+        [routerLink]="['/post', post.id]"
+        routerLinkActive="router-link-active"
+      />
+    </div>
+    <div class="post-interaction">
+      <app-likes [post]="post" [profileLikes]="true"></app-likes>
+      <app-save-post [post]="post"></app-save-post>
+      <app-share-post [post]="post"></app-share-post>
+    </div>
+  </div>
+  } }
 </div>

@@ -1,9 +1,8 @@
 @if ((userId ? visitedProfilePosts : userPosts) | async; as posts ) {
 <div class="grid-container">
-  @for (post of posts; track post.id) {
+  @for (post of posts; track post.id) { @if (!post.isShared) {
   <div class="post-container">
     <p>{{ post.post }}</p>
-    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
     <img
       [src]="post.imageUrl"
       [routerLink]="['/post', post.id]"
@@ -12,10 +11,27 @@
     <div class="post-interaction">
       <app-likes [post]="post" [profileLikes]="true"></app-likes>
       <app-save-post [post]="post"></app-save-post>
-      <app-share-post [post]="post"></app-share-post>
     </div>
+    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
   </div>
-  } @empty {
+  } @else {
+  <div class="post-container">
+    <p>{{ post.post }}</p>
+    <div class="original-post-container">
+      <p>{{ post.originalPost }}</p>
+      <img
+        [src]="post.imageUrl"
+        [routerLink]="['/post', post.id]"
+        routerLinkActive="router-link-active"
+      />
+    </div>
+    <div class="post-interaction">
+      <app-likes [post]="post" [profileLikes]="true"></app-likes>
+      <app-save-post [post]="post"></app-save-post>
+    </div>
+    <p>{{ post?.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+  </div>
+  }} @empty {
   <h3>No posts yet.</h3>
   }
 </div>

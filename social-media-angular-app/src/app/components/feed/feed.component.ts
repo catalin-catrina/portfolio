@@ -13,19 +13,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimestampToDatePipe } from '../../pipes/timestamp-to-date.pipe';
 import { LikesComponent } from '../likes/likes.component';
 import { SavePostComponent } from '../save-post/save-post.component';
+import { SharePostComponent } from '../share-post/share-post.component';
 
 @Component({
-    selector: 'app-feed',
-    imports: [
-        CommonModule,
-        RouterLink,
-        RouterLinkActive,
-        TimestampToDatePipe,
-        LikesComponent,
-        SavePostComponent,
-    ],
-    templateUrl: './feed.component.html',
-    styleUrl: './feed.component.scss'
+  selector: 'app-feed',
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    TimestampToDatePipe,
+    LikesComponent,
+    SavePostComponent,
+    SharePostComponent,
+  ],
+  templateUrl: './feed.component.html',
+  styleUrl: './feed.component.scss',
 })
 export class FeedComponent implements OnInit, OnDestroy {
   posts: Post[] = [];

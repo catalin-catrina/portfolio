@@ -27,7 +27,6 @@ import { SharePostComponent } from '../share-post/share-post.component';
     DatePipe,
     LikesComponent,
     SavePostComponent,
-    SharePostComponent,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',

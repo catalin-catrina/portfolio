@@ -1,4 +1,5 @@
-<div class="share-container" (click)="onShareClicked(post()?.id)">
+@if (!modal) {
+<div class="share-container" (click)="modal = true">
   <svg
     width="30px"
     height="30px"
@@ -15,3 +16,15 @@
     />
   </svg>
 </div>
+} @else {
+<div class="modal-container" (click)="modal = false">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button class="btn-close" (click)="modal = false">X</button>
+    <div class="modal-content">
+      <div>Add a description:</div>
+      <textarea rows="5" cols="50" #description></textarea>
+      <button (click)="onShareClicked(post(), description.value)">Share</button>
+    </div>
+  </div>
+</div>
+}
