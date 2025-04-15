@@ -1,8 +1,9 @@
 # My Portfolio
 
-## Work in progress
-1. **Social Media App** built with Angular, Typescript, Firebase, Algolia. - **In Progress**
-2. **Music / Media App** with Angular (think Spotify) - **Planned Next**
+## Work in progress (paused January-April 2025 due to personal reasons)
+1. **Social Media App** built with Angular, Typescript, Firebase, Algolia. - **In Progress** (ETA: June 1st 2025)
+2. **UI/UX Portfolio** built with Next.js and Framer Motion - **In Progress** (ETA: May 1st 2025)
+3. **E-commerce App** with Angular and Express - **Planned Next**
 
 ## Get in Touch
 
