@@ -29,13 +29,15 @@ export const Nav = () => {
           transition={{ duration: 0.5, type: "spring" }}
           className="nav-bg px-4 lg:px-0 py-10 border border-gray-700 rounded-3xl my-10 text-xl"
         >
-          <div className="flex justify-between items-center px-5">
-            <h3 className="text-xl md:text-2xl text-gray-300">
-              Catalin Catrina
-            </h3>
+          <div className="flex justify-end md:justify-between items-center px-5">
+            <div className="hidden md:block border-custom">
+              <h3 className="text-base text-gray-300 pr-8">
+                Built with Next.js, Tailwind and Framer Motion
+              </h3>
+            </div>
             <ul className="hidden lg:flex gap-8">
               {NAV_ITEMS.map((item) => (
-                <li key={item.id} className="text-xl tracking-wider">
+                <li key={item.id} className="text-lg tracking-wider">
                   <Link
                     href={item.path}
                     onClick={() => setMobileNavOpen(false)}

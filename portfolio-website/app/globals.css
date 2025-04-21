@@ -9,6 +9,22 @@ body {
   background-image: linear-gradient(to right, #151828, #181a24);
 }
 
+.border-custom {
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .border-custom {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-image: linear-gradient(
+        oklch(68.5% 0.169 237.323),
+        oklch(51.8% 0.253 323.949)
+      )
+      1;
+  }
+}
+
 /* Hero */
 .cta-button {
   /* 1) make a transparent border of whatever thickness you like */

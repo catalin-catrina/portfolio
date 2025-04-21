@@ -5,15 +5,20 @@ import useIsMobile from "@/hooks/useIsMobile";
 
 import { motion, Variants } from "motion/react";
 
-import placeholderImg from "@/assets/hero_placeholder.png";
+import heroImg from "@/assets/hero.png";
 
 export const Hero = () => {
+  const chars = (line: string) => Array.from(line);
+
+  const intro = `Hi there 👋 I'm Catalin.
+I am a Frontend Developer with 4 years of industry experience, proficient in both Angular and React. I excel at integrating fully‑responsive, mobile‑first designs using advanced CSS, and bring them to life with polished 2D animations, both custom and powered by GSAP or Framer Motion.`;
+
   const isMobile = useIsMobile(1024);
 
   const H1 = isMobile ? "h1" : motion.h1;
   const H2 = isMobile ? "h2" : motion.h2;
   const SPAN = isMobile ? "span" : motion.span;
-  const BUTTON = isMobile ? "button" : motion.button;
+  const A = isMobile ? "a" : motion.a;
 
   const headerContainerVariant = isMobile
     ? ({} as Variants)
@@ -56,7 +61,7 @@ export const Hero = () => {
 
   return (
     <section id="about">
-      <div className="relative mt-20 mb-30">
+      <div className="relative mt-10 mb-30">
         <div className="absolute right-[8%] bottom-[25%] w-[22vw] h-[22vw] rounded-full bg-fuchsia-700 blur-2xl opacity-10 blend-mode-overlay"></div>
         <div className="absolute right-[20%] bottom-[20%] w-[15vw] h-[15vw] rounded-full bg-violet-700 blur-2xl opacity-10 blend-mode-overlay"></div>
         <div className="absolute right-[30%] bottom-[25%] w-[20vw] h-[20vw] rounded-full bg-blue-700 blur-2xl opacity-10 blend-mode-overlay"></div>
@@ -82,26 +87,29 @@ export const Hero = () => {
                   animate="end"
                   className="text-xl md:text-2xl text-center lg:text-left text-gray-200 leading-10 lg:leading-12 tracking-wide"
                 >
-                  {"Frontend Developer with 4 years of industry experience, proficient in both Angular and React. I excel at integrating fully-responsive, mobile-first designs using advanced CSS, and bring them to life with polished 2D animations, both custom and powered by GSAP or Framer Motion."
-                    .split("")
-                    .map((letter, index) => (
-                      <SPAN key={index} variants={spanVariant}>
-                        {letter}
-                      </SPAN>
-                    ))}
+                  {intro.split("\n").map((line, lineIdx) => (
+                    <span key={`line-${lineIdx}`} className="block">
+                      {chars(line).map((ch, chIdx) => (
+                        <SPAN key={chIdx} variants={spanVariant}>
+                          {ch}
+                        </SPAN>
+                      ))}
+                    </span>
+                  ))}
                 </H2>
-                <BUTTON
+                <A
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 4, duration: 0.3 }}
+                  transition={{ delay: 4.5, duration: 0.3 }}
+                  href="mailto:catalin.catrina@outlook.com"
                   className="cta-button relative sm:w-[70%] md:w-[50%] lg:w-[initial] lg:self-start mx-auto lg:mx-[initial] text-gray-200 px-6 py-4 text-xl"
                 >
-                  Check out my work
-                </BUTTON>
+                  Contact Me
+                </A>
               </div>
             </div>
             <div className="hidden w-[80%] md:w-2/3 lg:w-1/3 lg:flex justify-center mr-12 lg:mr-0 mt-35">
-              <Image src={placeholderImg} alt="profile photo" />
+              <Image src={heroImg} alt="profile photo" />
             </div>
           </div>
         </div>

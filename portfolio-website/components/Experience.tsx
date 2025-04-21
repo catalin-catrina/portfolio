@@ -49,7 +49,7 @@ export const Experience = () => {
               </span>{" "}
               using <span className="font-semibold text-sky-500">Angular</span>.
               <br />
-              - Debugged and resolve complex issues within the existing
+              - Debugged and resolved complex issues within the existing
               codebase, enhancing application stability and user experience.
               <br />- Implemented design updates and UI refinements to improve
               the application&apos;s look and feel while maintaining
@@ -76,7 +76,7 @@ export const Experience = () => {
             <p className="text-lg/8 text-gray-200 tracking-wide">
               - Worked in an{" "}
               <span className="font-semibold text-sky-500">Agile (Scrum)</span>{" "}
-              envrionment to develop essential UI components for an{" "}
+              envrionment to develop essential <span className="font-semibold text-sky-500">Angular</span> components for an{" "}
               <span className="font-semibold text-sky-500">
                 internal application
               </span>
@@ -105,9 +105,9 @@ export const Experience = () => {
             <p className="text-lg/8 text-gray-200 tracking-wide">
               - Worked in a{" "}
               <span className="font-semibold text-sky-500">Waterfall</span>{" "}
-              environment{" "}
+              environment for clients in the{" "}
               <span className="font-semibold text-sky-500">
-                for clients in the education and e-learning industry
+              education and elearning industry
               </span>{" "}
               to <span className="font-semibold text-sky-500">redesign</span>{" "}
               Moodle themes using{" "}
@@ -118,7 +118,7 @@ export const Experience = () => {
               <span className="font-semibold text-sky-500">
                 Integrated designs
               </span>{" "}
-              into clean, responsive, mobile-first web interfaces.
+              into clean, responsive, mobile-first web interfaces, using  <span className="font-semibold text-sky-500">HTML, SCSS and jQuery</span>.
             </p>
           </motion.div>
         </div>

@@ -26,16 +26,16 @@ export const Contact = () => {
 
             <h4 className="text-4xl mb-4">Get In Touch</h4>
 
-            <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0">
-              <div>
+            <div className="flex flex-col justify-between gap-8 lg:gap-0">
+              <div className="flex flex-col gap-3">
                 <h5 className="text-4xl mb-2">Contact</h5>
-                <a href="mailto:catalin.catrina@outlook.com" className="text-xl">
-                  catalin.catrina@outlook.com
+                <a href="mailto:catalin.catrina@outlook.com" className="text-xl mb-6">
+                  catalin.catrina@outlook.com ↗️
                 </a>
               </div>
               <div className="flex flex-col gap-4 uppercase text-xl">
-                <h5>My Socials</h5>
-                <div className="flex justify-center items-center gap-2">
+                <h5>My Links</h5>
+                <div className="flex justify-center lg:justify-start items-center gap-4">
                   <Link
                     href="https://www.linkedin.com/in/catalin-catrina/"
                     target="_blank"
