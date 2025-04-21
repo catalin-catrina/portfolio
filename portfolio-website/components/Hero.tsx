@@ -1,24 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import useIsMobile from "@/hooks/useIsMobile";
 
-import {
-  motion,
-  useAnimate,
-  useMotionTemplate,
-  useMotionValue,
-  Variants,
-} from "motion/react";
+import { motion, useAnimate, Variants } from "motion/react";
 
 import placeholderImg from "@/assets/hero_placeholder.png";
-
-const COLORS = [
-  "oklch(51.1% 0.262 276.966)",
-  "oklch(49.1% 0.27 292.581)",
-  "oklch(49.6% 0.265 301.924)",
-];
 
 export const Hero = () => {
   const [scope, animate] = useAnimate();
@@ -67,18 +54,6 @@ export const Hero = () => {
           transition: { duration: 0.05, type: "spring" },
         },
       };
-
-  const color = useMotionValue(COLORS[0]);
-  // const border = useMotionTemplate`1px solid ${color}`;
-  // const boxShadow = useMotionTemplate`1px 2px 12px ${color}`;
-
-  useEffect(() => {
-    animate(color, COLORS, {
-      duration: 5,
-      ease: "linear",
-      repeat: Infinity,
-    });
-  });
 
   return (
     <section id="about">

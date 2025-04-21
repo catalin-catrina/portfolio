@@ -116,8 +116,12 @@ export const ContactForm = () => {
         onClick={handleSubmit}
         className="cta-button relative px-8 py-4 cursor-pointer"
       >
-        Send
+        {loading ? "Sending…" : "Send"}
       </motion.button>
+
+      
+      {success && <p className="text-green-400">{success}</p>}
+      {error   && <p className="text-red-500">{error}</p>}
     </div>
   );
 };
