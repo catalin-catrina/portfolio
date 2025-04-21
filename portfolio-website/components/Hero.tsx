@@ -69,8 +69,8 @@ export const Hero = () => {
       };
 
   const color = useMotionValue(COLORS[0]);
-  const border = useMotionTemplate`1px solid ${color}`;
-  const boxShadow = useMotionTemplate`1px 2px 12px ${color}`;
+  // const border = useMotionTemplate`1px solid ${color}`;
+  // const boxShadow = useMotionTemplate`1px 2px 12px ${color}`;
 
   useEffect(() => {
     animate(color, COLORS, {
@@ -78,7 +78,7 @@ export const Hero = () => {
       ease: "linear",
       repeat: Infinity,
     });
-  }, []);
+  });
 
   return (
     <section id="about">
