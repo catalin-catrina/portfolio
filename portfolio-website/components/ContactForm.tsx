@@ -45,7 +45,9 @@ export const ContactForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
 
     if (name === "name") setFormData({ ...formData, name: value });
@@ -119,9 +121,8 @@ export const ContactForm = () => {
         {loading ? "Sending…" : "Send"}
       </motion.button>
 
-      
       {success && <p className="text-green-400">{success}</p>}
-      {error   && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };
