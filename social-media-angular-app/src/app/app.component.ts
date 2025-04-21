@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, SidebarComponent, CommonModule],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [RouterOutlet, SidebarComponent, CommonModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   showSidebar = true;
