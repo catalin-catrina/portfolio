@@ -3,7 +3,7 @@
 import Image from "next/image";
 import useIsMobile from "@/hooks/useIsMobile";
 
-import { motion, useAnimate, Variants } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 import placeholderImg from "@/assets/hero_placeholder.png";
 
