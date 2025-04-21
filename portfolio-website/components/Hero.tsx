@@ -8,7 +8,6 @@ import { motion, useAnimate, Variants } from "motion/react";
 import placeholderImg from "@/assets/hero_placeholder.png";
 
 export const Hero = () => {
-  const [scope, animate] = useAnimate();
   const isMobile = useIsMobile(1024);
 
   const H1 = isMobile ? "h1" : motion.h1;
@@ -62,10 +61,7 @@ export const Hero = () => {
         <div className="absolute right-[20%] bottom-[20%] w-[15vw] h-[15vw] rounded-full bg-violet-700 blur-2xl opacity-10 blend-mode-overlay"></div>
         <div className="absolute right-[30%] bottom-[25%] w-[20vw] h-[20vw] rounded-full bg-blue-700 blur-2xl opacity-10 blend-mode-overlay"></div>
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <div
-            ref={scope}
-            className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:gap-8 w-full md:w-[85%] lg:w-[initial] mx-auto"
-          >
+          <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:gap-8 w-full md:w-[85%] lg:w-[initial] mx-auto">
             <div className="flex flex-col justify-center items-center gap-10 w-full md-w-[80%] lg:w-2/4 mb-0 lg:mb-20">
               <H1
                 variants={headerContainerVariant}
