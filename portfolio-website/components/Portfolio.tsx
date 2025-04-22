@@ -35,12 +35,12 @@ export const Portfolio = () => {
               className="z-[-1] object-cover object-top-left"
               alt="project"
             /> */}
-            <div className="absolute z-[-1] inset-0 flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
+            <div className="hidden absolute z-[-1] inset-0 lg:flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
               <h1 className="text-4xl">Placeholder Image</h1>
               <p className="text-2xl">to be replaced upon project completion</p>
               <p className="text-2xl">(hover card)</p>
             </div>
-            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-0 translate-y-4 transition hover:opacity-100 hover:translate-y-0 rounded-2xl p-4 bg-black/90 text-left text-gray-300">
+            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-100 lg:opacity-0 lg:translate-y-4 lg:transition lg:hover:opacity-100 lg:hover:translate-y-0 rounded-2xl p-4 max-lg:bg-linear-to-br max-lg:from-purple-950/80 max-lg:to-blue-950/70 lg:bg-black/90 text-left text-gray-300">
               <Link
                 href="https://github.com/catalin-catrina/portfolio/tree/master/social-media-angular-app"
                 target="_blank"
@@ -82,10 +82,10 @@ export const Portfolio = () => {
               className="z-[-1] object-cover object-center"
               alt="project"
             />
-            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-0 translate-y-4 transition hover:opacity-100 hover:translate-y-0 rounded-2xl p-4 bg-black/90 text-left text-gray-300">
+            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-center max-lg:opacity-100 lg:opacity-0 lg:hover:opacity-100 lg:translate-y-4 lg:transition lg:hover:translate-y-0 rounded-2xl p-4 max-lg:bg-linear-to-br max-lg:from-purple-950/80 max-lg:to-blue-950/70 lg:bg-black/90 text-left text-gray-300">
               <Link
                 href=""
-                className="w-full h-full flex flex-col gap-4 justify-center items-start"
+                className="w-full h-full flex flex-col gap-4 justify-center items-center"
               >
                 <h4 className="text-3xl">Portfolio website</h4>
                 <p className="text-xl">Built with Next.js and Framer Motion.</p>
@@ -106,11 +106,11 @@ export const Portfolio = () => {
               className="z-[-1] object-cover object-center"
               alt="project"
             /> */}
-            <div className="absolute z-[-1] inset-0 flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 rounded-2xl text-gray-300 text-center">
+            <div className="hidden absolute z-[-1] inset-0 lg:flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
               <h1 className="text-4xl">To Be Announced</h1>
               <p className="text-2xl">(hover card)</p>
             </div>
-            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-0 translate-y-4 transition hover:opacity-100 hover:translate-y-0 rounded-2xl p-4 bg-black/90 text-left text-gray-300">
+            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-100 lg:opacity-0 lg:translate-y-4 lg:transition hover:opacity-100 lg:hover:translate-y-0 rounded-2xl p-4 max-lg:bg-linear-to-br max-lg:from-purple-950/80 max-lg:to-blue-950/70 lg:bg-black/90 text-left text-gray-300">
               <Link
                 href=""
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"
@@ -138,11 +138,11 @@ export const Portfolio = () => {
               className="z-[-1] object-cover object-[0%_50%]"
               alt="project"
             /> */}
-            <div className="absolute z-[-1] inset-0 flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
+            <div className="hidden absolute z-[-1] inset-0 lg:flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
               <h1 className="text-4xl">To Be Announced</h1>
               <p className="text-2xl">(hover card)</p>
             </div>
-            <div className="absolute inset-0 z-10 opacity-0 translate-y-4 transition hover:opacity-100 hover:translate-y-0 rounded-2xl p-4 bg-black/90 text-left text-gray-300">
+            <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-100 lg:opacity-0 lg:translate-y-4 lg:transition hover:opacity-100 lg:hover:translate-y-0 rounded-2xl p-4 max-lg:bg-linear-to-br max-lg:from-purple-950/80 max-lg:to-blue-950/70 lg:bg-black/90 text-left text-gray-300">
               <Link
                 href=""
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"

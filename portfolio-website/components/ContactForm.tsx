@@ -111,12 +111,12 @@ export const ContactForm = () => {
       </div>
 
       <motion.button
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 3, type: "spring" }}
+        transition={{ duration: 1, type: "spring" }}
         onClick={handleSubmit}
-        className="cta-button relative px-8 py-4 cursor-pointer"
+        className="cta-button relative px-8 py-4 cursor-pointer lg:hover:translate-y-[-4px] lg:transition lg:active:scale-[0.95]"
       >
         {loading ? "Sending…" : "Send"}
       </motion.button>

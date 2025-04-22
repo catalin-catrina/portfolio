@@ -62,9 +62,9 @@ I am a Frontend Developer with 4 years of industry experience, proficient in bot
   return (
     <section id="about">
       <div className="relative mt-10 mb-30">
-        <div className="absolute right-[8%] bottom-[25%] w-[22vw] h-[22vw] rounded-full bg-fuchsia-700 blur-2xl opacity-10 blend-mode-overlay"></div>
-        <div className="absolute right-[20%] bottom-[20%] w-[15vw] h-[15vw] rounded-full bg-violet-700 blur-2xl opacity-10 blend-mode-overlay"></div>
-        <div className="absolute right-[30%] bottom-[25%] w-[20vw] h-[20vw] rounded-full bg-blue-700 blur-2xl opacity-10 blend-mode-overlay"></div>
+        <div className="absolute right-[8%] bottom-[25%] w-[22vw] h-[22vw] max-w-[300px] max-h-[260px] rounded-full bg-fuchsia-700 blur-2xl opacity-10 blend-mode-overlay"></div>
+        <div className="absolute right-[20%] bottom-[20%] w-[15vw] h-[15vw] max-w-[250px] max-h-[200px] rounded-full bg-violet-700 blur-2xl opacity-10 blend-mode-overlay"></div>
+        <div className="absolute right-[30%] bottom-[25%] w-[20vw] h-[20vw] max-w-[300px] max-h-[260px] rounded-full bg-blue-700 blur-2xl opacity-10 blend-mode-overlay"></div>
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:gap-8 w-full md:w-[85%] lg:w-[initial] mx-auto">
             <div className="flex flex-col justify-center items-center gap-10 w-full md-w-[80%] lg:w-2/4 mb-0 lg:mb-20">
@@ -102,7 +102,7 @@ I am a Frontend Developer with 4 years of industry experience, proficient in bot
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 4.5, duration: 0.3 }}
                   href="mailto:catalin.catrina@outlook.com"
-                  className="cta-button relative sm:w-[70%] md:w-[50%] lg:w-[initial] lg:self-start mx-auto lg:mx-[initial] text-gray-200 px-6 py-4 text-xl"
+                  className="cta-button relative sm:w-[70%] md:w-[50%] lg:w-[initial] lg:self-start mx-auto lg:mx-[initial] text-gray-200 px-6 py-4 text-xl lg:hover:translate-y-[-4px] lg:transition lg:active:scale-[0.95]"
                 >
                   Contact Me
                 </A>

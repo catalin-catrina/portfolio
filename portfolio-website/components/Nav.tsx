@@ -37,7 +37,7 @@ export const Nav = () => {
             </div>
             <ul className="hidden lg:flex gap-8">
               {NAV_ITEMS.map((item) => (
-                <li key={item.id} className="text-lg tracking-wider">
+                <li key={item.id} className="text-lg tracking-wider text-gray-300 transition hover:text-sky-400">
                   <Link
                     href={item.path}
                     onClick={() => setMobileNavOpen(false)}
