@@ -47,16 +47,16 @@ export const Portfolio = () => {
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"
               >
                 <h4 className="text-3xl">Social Media App (WIP)</h4>
-                <p className="text-xl">(to be named upon completion)</p>
-                <p className="text-xl">
+                <p className="text-lg md:text-xl">(to be named upon completion)</p>
+                <p className="text-lg md:text-xl">
                   Tech stack: Angular FE, Firebase BE, and Algolia as search
                   service
                 </p>
-                <p className="text-xl">
+                <p className="text-lg md:text-xl">
                   Features: user authentication, profile management, real-time
                   feed, notifications, chat system, and search functionality
                 </p>
-                <p className="text-xl">
+                <p className="text-lg md:text-xl">
                   Why this project stands out: Every UI component in this
                   application is designed and developed entirely by me, without
                   relying on third-party UI libraries such as Angular Material
@@ -148,10 +148,10 @@ export const Portfolio = () => {
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"
               >
                 <h4 className="text-3xl">Social Media App</h4>
-                <p className="text-3xl">
+                <p className="text-lg md:text-xl">
                   Build the Angular Social Media project with React / Next.js
                 </p>
-                <p className="text-3xl">Not Started: ETA July 1st 2025</p>
+                <p className="text-lg md:text-xl">Not Started: ETA July 1st 2025</p>
               </Link>
             </div>
           </motion.div>
