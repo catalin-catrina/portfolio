@@ -6,8 +6,8 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
-import { ProfileTabsComponent } from '../profile-tabs/profile-tabs.component';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { ProfileTabsComponent } from './profile-tabs/profile-tabs.component';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { CommonModule } from '@angular/common';

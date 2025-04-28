@@ -19,6 +19,8 @@ import {
 } from '@angular/fire/firestore';
 import { Post } from '../models/post.interface';
 import { IUser } from '../models/user.interface';
+import { NotificationsService } from './notifications.service';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +29,9 @@ export class PostsService {
   private storage = inject(Storage);
   private firestore = inject(Firestore);
   private auth = inject(AuthenticationService);
+  private profileService = inject(ProfileService);
+  private notificationsService = inject(NotificationsService);
+
   userSignal = this.auth.getUser();
 
   async getUserPostById(
@@ -105,16 +110,55 @@ export class PostsService {
   }
 
   writePostToFirestore(post: string, imageUrl: any) {
-    const postsCollection = collection(this.firestore, 'posts');
-    addDoc(postsCollection, {
-      userId: this.userSignal()?.uid,
-      userName: this.auth.userDetails?.displayName,
-      post: post,
-      imageUrl: imageUrl,
-      createdAt: serverTimestamp(),
-      likesCount: 0,
-      isShared: false,
-    } as Post);
+    const loggedUserId = this.userSignal()?.uid;
+
+    if (loggedUserId) {
+      const postsCollection = collection(this.firestore, 'posts');
+      addDoc(postsCollection, {
+        userId: loggedUserId,
+        userName: this.auth.userDetails?.displayName,
+        post: post,
+        imageUrl: imageUrl,
+        createdAt: serverTimestamp(),
+        likesCount: 0,
+        isShared: false,
+      } as Post).then(async (docRef) => {
+        // For every newly created post, get the followers of the logged in user and create notification for each
+        const postId = docRef.id;
+        const loggedInProfile = await this.profileService.fetchUserById(
+          loggedUserId
+        );
+
+        const followCollection = collection(this.firestore, 'follows');
+        const q = query(
+          followCollection,
+          where('followedId', '==', this.userSignal()?.uid)
+        );
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(async (d) => {
+          const userId = d.id;
+          const followerProfile = await this.profileService.fetchUserById(
+            userId
+          );
+          if (
+            loggedInProfile &&
+            loggedInProfile.uid &&
+            followerProfile &&
+            followerProfile.uid
+          ) {
+            this.notificationsService.createNotification(
+              postId,
+              loggedInProfile?.uid,
+              loggedInProfile?.displayName,
+              followerProfile?.uid,
+              followerProfile?.displayName,
+              'post'
+            );
+          }
+        });
+      });
+    }
   }
 
   writeImageToStorage(file: File): Promise<string> {

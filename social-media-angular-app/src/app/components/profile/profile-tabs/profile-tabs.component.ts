@@ -1,9 +1,9 @@
 import { Component, Input, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PostsComponent } from '../posts/posts.component';
-import { LikedPostsComponent } from '../liked-posts/liked-posts.component';
-import { SavedPostsComponent } from '../saved-posts/saved-posts.component';
+import { PostsComponent } from '../../posts/posts.component'; 
+import { LikedPostsComponent } from '../../liked-posts/liked-posts.component';
+import { SavedPostsComponent } from '../../saved-posts/saved-posts.component';
 
 @Component({
     selector: 'app-profile-tabs',
