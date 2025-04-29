@@ -11,6 +11,6 @@ export interface Post {
   isShared: boolean;
   userId: string;
   userName: string;
-  sharedUserName?: string;
+  originalPoster?: string;
   userProfilePhotoUrl?: string;
 }

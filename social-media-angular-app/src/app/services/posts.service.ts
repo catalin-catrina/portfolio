@@ -123,13 +123,13 @@ export class PostsService {
         likesCount: 0,
         isShared: false,
       } as Post).then(async (docRef) => {
-        // For every newly created post, get the followers of the logged in user and create notification for each
+        // For every newly created post, get the followers of the logged in user and create a notification for each
         const postId = docRef.id;
         const loggedInProfile = await this.profileService.fetchUserById(
           loggedUserId
         );
 
-        const followCollection = collection(this.firestore, 'follows');
+        const followCollection = collection(this.firestore, 'follow');
         const q = query(
           followCollection,
           where('followedId', '==', this.userSignal()?.uid)
@@ -137,10 +137,11 @@ export class PostsService {
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(async (d) => {
-          const userId = d.id;
+          const followerData = d.data();
           const followerProfile = await this.profileService.fetchUserById(
-            userId
+            followerData['followerId']
           );
+
           if (
             loggedInProfile &&
             loggedInProfile.uid &&

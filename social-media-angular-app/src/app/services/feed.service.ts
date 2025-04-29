@@ -116,8 +116,6 @@ export class FeedService {
                 return {
                   ...post,
                   id: postSnap.id,
-                  originalPost: originalPost?.post,
-                  sharedUserName: originalPost?.userName,
                 } as Post;
               });
             } else {

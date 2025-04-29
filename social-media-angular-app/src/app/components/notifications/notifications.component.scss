@@ -2,3 +2,22 @@
   width: 30px;
   height: 30px;
 }
+
+.notificationsPanel {
+  min-height: 300px;
+  background-color: darkmagenta;
+  color: #fff;
+}
+
+.notifications {
+  cursor: pointer;
+}
+
+.link {
+  color: #ddd;
+  cursor: pointer;
+
+  &:hover {
+    color: palevioletred;
+  }
+}

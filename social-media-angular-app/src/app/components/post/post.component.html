@@ -1,28 +1,45 @@
-@if (post) {
-<ng-container>
-  <div class="card">
-    <div class="card-title">
-      <h3>Post by: {{ post.userName }}</h3>
-    </div>
-    <div class="card-image">
-      <img [src]="post.imageUrl" />
-    </div>
-    <div class="card-description">
-      {{ post.post }}
-    </div>
-    <div class="card-date">
-      <!-- Posted on: {{ months[post.createdAt.getMonth()] }}
-        {{ post.createdAt.getDate() }} at {{ post.createdAt.getHours() }}:{{
-          post.createdAt.getMinutes()
-        }} -->
-    </div>
-    <div class="card-comments">
-      <app-comments [post]="post"></app-comments>
-    </div>
-    <div class="card-write-comment">
-      <app-create-comment [post]="post"></app-create-comment>
-    </div>
+@if (post) { @if (!post.isShared) {
+<div class="post-container">
+  <div class="card-upper">
+    <p>{{ post.userName }}</p>
+    <p>{{ post.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
   </div>
-</ng-container>
-
-}
+  <h2>{{ post.post }}</h2>
+  <img [src]="post.imageUrl" />
+  <div class="post-interaction">
+    <app-likes [post]="post" [feedLikes]="true"></app-likes>
+    <app-save-post [post]="post"></app-save-post>
+    <app-share-post [post]="post"></app-share-post>
+  </div>
+  <div class="create-comment">
+    <app-create-comment [post]="post"></app-create-comment>
+  </div>
+  <div class="comments">
+    <app-comments [post]="post"></app-comments>
+  </div>
+</div>
+} @else {
+<div class="post-container">
+  <div class="card-upper">
+    <p>{{ post.userName }}</p>
+    <p>{{ post.createdAt | timestampToDate | date : "MMM d, y, h:mm a" }}</p>
+  </div>
+  <p>{{ post.post }}</p>
+  <div class="original-post-container">
+    <p>{{ post.originalPoster }}</p>
+    <p>{{ post.originalPost }}</p>
+    <img [src]="post.imageUrl" />
+  </div>
+  <div class="post-interaction">
+    <app-likes [post]="post" [profileLikes]="true"></app-likes>
+    <app-save-post [post]="post"></app-save-post>
+    <app-share-post [post]="post"></app-share-post>
+  </div>
+  <div class="create-comment">
+    <app-create-comment [post]="post"></app-create-comment>
+  </div>
+  <div class="comments">
+    <app-comments [post]="post"></app-comments>
+  </div>
+</div>
+}}

@@ -1,12 +1,29 @@
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { collection, doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { IUser } from '../models/user.interface';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
+  private _userProfile = signal<IUser | null>(null);
+  readonly userProfile = this._userProfile.asReadonly();
+
+  private authService = inject(AuthenticationService);
   private firestore = inject(Firestore);
+
+  userEffect = effect(async () => {
+    const userSignal = this.authService.getUser();
+    const user = userSignal();
+    if (user && user.uid) {
+      this.fetchUserById(user.uid).then((profile) => {
+        if (profile) {
+          this._userProfile.set(profile);
+        }
+      });
+    }
+  });
 
   async fetchUserById(id: string | null): Promise<IUser | null> {
     try {

@@ -55,17 +55,19 @@ export class NotificationsService {
       limit(5)
     );
     const querySnapshot = await getDocs(q);
-    const notifications = querySnapshot.docs.map((d) => ({
-      id: d.id,
-      ...(d.data() as Notification),
-    }));
+    const notifications = querySnapshot.docs.map((d) => {
+      return {
+        id: d.id,
+        ...(d.data() as Notification),
+      };
+    });
     return notifications;
   }
 
   markAsSeen(id: string): void {
     const notificationsCollection = collection(this.firestore, 'notifications');
-    const docSnapshot = doc(notificationsCollection, id);
-    updateDoc(docSnapshot, {
+    const docRef = doc(notificationsCollection, id);
+    updateDoc(docRef, {
       seen: true,
     });
   }

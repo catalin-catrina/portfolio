@@ -1,3 +1,54 @@
-<div class="notifications">
-  <img src="icons/notifications_icon.svg" class="icon" alt="notifications bell icon" />
+<div (click)="openPanel()" class="notifications">
+  <img
+    src="icons/notifications_icon.svg"
+    class="icon"
+    alt="notifications bell icon"
+  />
 </div>
+
+@if(panelOpened) {
+<div class="notificationsPanel">
+  @for(n of notifications; track n.id) { @switch (n.type) { @case('post') {
+  <div>
+    <span (click)="handleUsernameClick(n.from_id)" class="link">{{
+      n.from_name
+    }}</span>
+    made a new {{ n.type }}.
+    <span (click)="handleNotificationClick(n.resource_id)" class="link"
+      >Check it out!</span
+    >
+  </div>
+  } @case ('like') {
+  <div>
+    <span (click)="handleUsernameClick(n.from_id)" class="link">{{
+      n.from_name
+    }}</span>
+    liked your
+    <span (click)="handleNotificationClick(n.resource_id)" class="link"
+      >post</span
+    >
+  </div>
+  } @case ('share') {
+  <div>
+    <span (click)="handleUsernameClick(n.from_id)" class="link">{{
+      n.from_name
+    }}</span>
+    <span (click)="handleNotificationClick(n.resource_id)" class="link">
+      shared your post</span
+    >
+  </div>
+  } @case ('comment') {
+  <span (click)="handleUsernameClick(n.from_id)" class="link">{{
+    n.from_name
+  }}</span>
+  left a
+  <span (click)="handleNotificationClick(n.resource_id)" class="link">
+    comment</span
+  >
+  on your post! } @case ('follow') {
+  <span (click)="handleUsernameClick(n.from_id)" class="link">{{
+    n.from_name
+  }}</span>
+  followed you!}} }
+</div>
+}

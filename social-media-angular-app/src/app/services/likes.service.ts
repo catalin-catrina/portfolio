@@ -16,6 +16,8 @@ import {
 import { IUser } from '../models/user.interface';
 import { Observable, switchMap } from 'rxjs';
 import { Post } from '../models/post.interface';
+import { NotificationsService } from './notifications.service';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +27,15 @@ export class LikesService {
   private likedPostsSubscription: (() => void) | null = null;
 
   private firestore = inject(Firestore);
+  private profileService = inject(ProfileService);
+  private notificationsService = inject(NotificationsService);
+
+  private userProfile = this.profileService.userProfile;
 
   async likePost(postId: string, userId: string): Promise<void> {
+    const userProfile = this.userProfile();
+    if (!userProfile) return;
+
     const postRef = doc(this.firestore, `posts/${postId}`);
     const userLikeRef = doc(this.firestore, `users/${userId}/likes/${postId}`);
     const postLikeRef = doc(this.firestore, `posts/${postId}/likes/${userId}`);
@@ -41,6 +50,25 @@ export class LikesService {
       transaction.set(postLikeRef, { userId, likedAt: serverTimestamp() });
 
       transaction.update(postRef, { likesCount: increment(1) });
+    }).then(async () => {
+      const postSnap = await getDoc(postRef);
+      const post = postSnap.data() as Post;
+
+      const postId = postSnap.id;
+      const posterId = post.userId;
+      const posterName = post.userName;
+      const toName = userProfile.displayName;
+
+      if (postId && userId && toName && posterId && posterName) {
+        this.notificationsService.createNotification(
+          postId,
+          userId,
+          toName,
+          posterId,
+          posterName,
+          'like'
+        );
+      }
     });
   }
 

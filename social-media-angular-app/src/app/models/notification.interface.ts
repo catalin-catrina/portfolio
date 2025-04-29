@@ -1,6 +1,7 @@
 import { Timestamp } from '@angular/fire/firestore';
 
 export interface Notification {
+  id?: string;
   resource_id: string;
   from_id: string;
   from_name: string;

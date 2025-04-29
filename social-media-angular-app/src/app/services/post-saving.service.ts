@@ -34,7 +34,7 @@ export class PostSavingService {
   async unsavePost(postId: string, userId: string): Promise<void> {
     const savedPostRef = doc(
       this.firestore,
-      `users/${userId}/saved-posts/${postId}`
+      `users/${userId}/saved_posts/${postId}`
     );
     await deleteDoc(savedPostRef);
   }
@@ -42,7 +42,7 @@ export class PostSavingService {
   async hasUserSavedPost(postId: string, userId: string): Promise<boolean> {
     const savedPostRef = doc(
       this.firestore,
-      `users/${userId}/saved-posts/${postId}`
+      `users/${userId}/saved_posts/${postId}`
     );
     const savedPostSnap = await getDoc(savedPostRef);
     return savedPostSnap.exists();
