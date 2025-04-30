@@ -24,7 +24,7 @@ export class CreateCommentComponent {
     const postId = this.post?.id;
 
     if (comment && postId && this.userDetails && this.userDetails.fullname) {
-      this.commentsService.writeCommentToFirestore(
+      this.commentsService.postComment(
         comment,
         postId,
         this.userDetails.fullname

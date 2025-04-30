@@ -11,12 +11,16 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Follow } from '../models/follow.interface';
+import { ProfileService } from './profile.service';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FollowService {
   private firestore = inject(Firestore);
+  private profileService = inject(ProfileService);
+  private notificationsService = inject(NotificationsService);
 
   async followUser(followerId: string, followedId: string) {
     try {
@@ -29,7 +33,25 @@ export class FollowService {
           followedId,
           followedAt: serverTimestamp(),
         };
-        await setDoc(followDocRef, data);
+        await setDoc(followDocRef, data).then(async (docRef) => {
+          const fromProfile = await this.profileService.fetchUserById(
+            followerId
+          );
+          const toProfile = await this.profileService.fetchUserById(followedId);
+          if (fromProfile && toProfile) {
+            const fromName = fromProfile.displayName;
+            const toName = fromProfile.displayName;
+
+            this.notificationsService.createNotification(
+              null,
+              followerId,
+              fromName,
+              followedId,
+              toName,
+              'follow'
+            );
+          }
+        });
       }
     } catch (error) {
       console.error(

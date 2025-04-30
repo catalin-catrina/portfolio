@@ -36,7 +36,7 @@ export class NotificationsComponent {
     this.router.navigate([`profile/${userId}`]);
   }
 
-  handleNotificationClick(resourceId: string): void {
+  handleNotificationClick(resourceId: string | null): void {
     this.router.navigate([`post/${resourceId}`]);
   }
 }

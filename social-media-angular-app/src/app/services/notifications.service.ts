@@ -22,14 +22,15 @@ export class NotificationsService {
   private firestore: Firestore = inject(Firestore);
 
   createNotification(
-    resource_id: string,
+    resource_id: string | null,
     from_id: string,
     from_name: string,
     to_id: string,
     to_name: string,
     type: string
   ): void {
-    if (!resource_id || !from_id || !from_name || !to_id || !to_name || !type) {
+
+    if (!from_id || !from_name || !to_id || !to_name || !type) {
       return;
     }
 
