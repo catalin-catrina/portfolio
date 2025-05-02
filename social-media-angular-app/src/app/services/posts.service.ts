@@ -111,12 +111,13 @@ export class PostsService {
 
   writePostToFirestore(post: string, imageUrl: any) {
     const loggedUserId = this.userSignal()?.uid;
+    const userProfile = this.profileService.userProfile();
 
-    if (loggedUserId) {
+    if (loggedUserId && userProfile && userProfile.displayName) {
       const postsCollection = collection(this.firestore, 'posts');
       addDoc(postsCollection, {
         userId: loggedUserId,
-        userName: this.auth.userDetails?.displayName,
+        userName: userProfile?.displayName,
         post: post,
         imageUrl: imageUrl,
         createdAt: serverTimestamp(),
@@ -125,9 +126,7 @@ export class PostsService {
       } as Post).then(async (docRef) => {
         // For every newly created post, get the followers of the logged in user and create a notification for each
         const postId = docRef.id;
-        const loggedInProfile = await this.profileService.fetchUserById(
-          loggedUserId
-        );
+        const loggedInProfile = userProfile;
 
         const followCollection = collection(this.firestore, 'follow');
         const q = query(
@@ -144,16 +143,16 @@ export class PostsService {
 
           if (
             loggedInProfile &&
-            loggedInProfile.uid &&
+            loggedInProfile.id &&
             followerProfile &&
-            followerProfile.uid
+            followerProfile.id
           ) {
             this.notificationsService.createNotification(
               postId,
-              loggedInProfile?.uid,
-              loggedInProfile?.displayName,
-              followerProfile?.uid,
-              followerProfile?.displayName,
+              loggedInProfile.id,
+              loggedInProfile.displayName,
+              followerProfile.id,
+              followerProfile.displayName,
               'post'
             );
           }

@@ -3,6 +3,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommentsService } from '../../services/comments.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Post } from '../../models/post.interface';
+import { ProfileService } from '../../services/profile.service';
+import { IUser } from '../../models/user.interface';
 
 @Component({
   selector: 'app-create-comment',
@@ -14,20 +16,21 @@ export class CreateCommentComponent {
   @Input() post: Post | null = null;
 
   private commentsService = inject(CommentsService);
-  private authService = inject(AuthenticationService);
+  private profileService = inject(ProfileService);
 
-  currentUserSignal = this.authService.getUser();
-  userDetails = this.authService.userDetails;
+  userProfile = this.profileService.userProfile;
 
   async onSubmit(form: NgForm) {
     const comment = form.value.comment;
     const postId = this.post?.id;
+    const profile = this.userProfile();
 
-    if (comment && postId && this.userDetails && this.userDetails.fullname) {
+    if (comment && postId && profile && profile.fullname && profile.id) {
       this.commentsService.postComment(
         comment,
         postId,
-        this.userDetails.fullname
+        profile.fullname,
+        profile.id
       );
     }
   }

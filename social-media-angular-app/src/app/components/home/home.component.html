@@ -1,2 +1,9 @@
-<h3>Hi {{ userDetails?.fullname }}!</h3>
-<app-feed></app-feed>
+@if (userProfile(); as profile) {
+<div>
+  <h3>Hi {{ profile.fullname }}!</h3>
+  <app-feed></app-feed>
+</div>
+}
+@else {
+    <div class="loading"></div>
+}

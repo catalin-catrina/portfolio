@@ -31,7 +31,11 @@ export class UserSearchService {
         );
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map((doc) => {
-          return doc.data() as IUser;
+          const docId = doc.id;
+          return {
+            id: docId,
+            ...doc.data(),
+          } as IUser;
         });
       })
     );

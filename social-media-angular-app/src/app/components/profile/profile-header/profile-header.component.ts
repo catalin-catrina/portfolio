@@ -50,6 +50,8 @@ export class ProfileHeaderComponent implements OnChanges {
   }
 
   followUser(followerId: string | undefined, followedId: string | null) {
+    console.log('followerId', followerId);
+    console.log('followedId', followedId);
     if (followerId && followedId) {
       this.followService.followUser(followerId, followedId);
       this.getIsFollowing();

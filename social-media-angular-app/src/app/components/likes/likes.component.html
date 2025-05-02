@@ -23,10 +23,10 @@
   class="post-likers-container"
   [ngClass]="postLikers && postLikers.length ? '' : 'hide-element'"
 >
-  @for (user of postLikers; track user.uid) {
+  @for (user of postLikers; track user.id) {
   <div class="post-liker">
     <div
-      [routerLink]="['/profile', user.uid]"
+      [routerLink]="['/profile', user.id]"
       routerLinkActive="routerLinkActive"
     >
       {{ user.fullname }}

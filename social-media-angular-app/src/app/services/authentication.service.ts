@@ -17,7 +17,6 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  userDetails!: IUser | null;
   userIsAvailableSubject = new BehaviorSubject(false);
   userIsAvailable$ = this.userIsAvailableSubject.asObservable();
 
@@ -35,9 +34,6 @@ export class AuthenticationService {
     this._user$.subscribe((user: User | null) => {
       if (user) {
         this.userIsAvailableSubject.next(true);
-        this.getUserDetails(user.uid).then((user: IUser | null) => {
-          this.userDetails = user;
-        });
       } else {
         this.userIsAvailableSubject.next(false);
       }
@@ -46,16 +42,6 @@ export class AuthenticationService {
 
   getUser(): Signal<User | null> {
     return this._userSignal;
-  }
-
-  async getUserDetails(userId: string): Promise<IUser | null> {
-    const userDoc = doc(this.firestore, 'users', userId);
-    const docSnap = await getDoc(userDoc);
-    if (docSnap.exists()) {
-      return docSnap.data() as IUser;
-    } else {
-      return null;
-    }
   }
 
   signupUser(

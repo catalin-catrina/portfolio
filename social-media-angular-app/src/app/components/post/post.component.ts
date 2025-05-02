@@ -1,4 +1,4 @@
-import { Component, DoCheck, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 import { CommonModule } from '@angular/common';
@@ -19,11 +19,9 @@ import { SharePostComponent } from '../share-post/share-post.component';
     templateUrl: './post.component.html',
     styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit, DoCheck {
-  ngDoCheck(): void {
-    console.log(this.post)
-  }
-  months = months;
+export class PostComponent implements OnInit {
+ 
+ months = months;
   post!: (Post & { userName: string }) | null;
 
   private route = inject(ActivatedRoute);

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FeedComponent } from '../feed/feed.component';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,6 @@ import { FeedComponent } from '../feed/feed.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  private authService = inject(AuthenticationService);
-  userDetails = this.authService.userDetails;
+  private profileService = inject(ProfileService);
+  userProfile = this.profileService.userProfile;
 }

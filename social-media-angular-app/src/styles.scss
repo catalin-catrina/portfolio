@@ -20,3 +20,21 @@ a:active {
 img {
   max-width: 100%;
 }
+
+.loading {
+  width: 30px;
+  height: 30px;
+  border-right: 3px solid cornflowerblue;
+  border-radius: 100%;
+  animation: rotate 1s ease-in-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

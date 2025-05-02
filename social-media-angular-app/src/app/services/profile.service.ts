@@ -31,7 +31,10 @@ export class ProfileService {
         const docRef = doc(this.firestore, 'users', id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          return docSnap.data() as IUser;
+          return ({
+            id: docSnap.id,
+            ...docSnap.data() as IUser
+          });
         } else {
           return null;
         }

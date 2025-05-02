@@ -7,9 +7,9 @@
 <div>
   <h3>Search Results:</h3>
   <ul>
-    @for (user of searchResults; track user.uid) {
+    @for (user of searchResults; track user.id) {
     <li>
-      <a [routerLink]="['/profile', user.uid]" routerLinkActive>{{
+      <a [routerLink]="['/profile', user.id]" routerLinkActive>{{
         user.displayName
       }}</a>
     </li>
