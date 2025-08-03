@@ -1,8 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { NotificationsService } from '../../services/notifications.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Notification } from '../../models/notification.interface';
 import { Router } from '@angular/router';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-notifications',
@@ -12,24 +11,32 @@ import { Router } from '@angular/router';
 })
 export class NotificationsComponent {
   panelOpened = false;
-  notifications: Notification[] = [];
 
   private readonly router = inject(Router);
-  private loginService = inject(AuthenticationService);
   private notificationsService = inject(NotificationsService);
-  user = this.loginService.getUser();
+  private profileService = inject(ProfileService);
+
+  notifications = this.notificationsService.notifications;
+  unseenNotifCount = this.notificationsService.unseenNotifCount;
+  user = this.profileService.userProfile;
 
   notificationsEffect = effect(async () => {
     const loggedInUser = this.user();
-    if (loggedInUser && loggedInUser.uid) {
-      this.notifications = await this.notificationsService.getNotifications(
-        loggedInUser.uid
+    if (loggedInUser && loggedInUser.id) {
+      const notifications = await this.notificationsService.getNotifications(
+        loggedInUser.id
       );
+      this.notifications.set(notifications);
     }
   });
 
   openPanel(): void {
     this.panelOpened = !this.panelOpened;
+    this.notifications().forEach((notification) => {
+      if (!notification.seen) {
+        this.notificationsService.markAsSeen(notification.id);
+      }
+    });
   }
 
   handleUsernameClick(userId: string) {

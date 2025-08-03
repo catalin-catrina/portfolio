@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import {
   addDoc,
   collection,
@@ -14,12 +14,35 @@ import {
 } from '@angular/fire/firestore';
 
 import { Notification } from '../models/notification.interface';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationsService {
+  notifications = signal<Notification[]>([]);
+
+  unseenNotifCount = computed(() => {
+    let count = 0;
+    this.notifications().forEach((notification) => {
+      if (!notification.seen) {
+        count++;
+      }
+    });
+    return count;
+  });
+
   private firestore: Firestore = inject(Firestore);
+  private profileService = inject(ProfileService);
+  user = this.profileService.userProfile;
+
+  notificationsEffect = effect(async () => {
+    const loggedInUser = this.user();
+    if (loggedInUser && loggedInUser.id) {
+      const notifications = await this.getNotifications(loggedInUser.id);
+      this.notifications.set(notifications);
+    }
+  });
 
   createNotification(
     resource_id: string | null,
@@ -29,7 +52,6 @@ export class NotificationsService {
     to_name: string,
     type: string
   ): void {
-
     if (!from_id || !from_name || !to_id || !to_name || !type) {
       return;
     }
@@ -56,10 +78,10 @@ export class NotificationsService {
       limit(5)
     );
     const querySnapshot = await getDocs(q);
-    const notifications = querySnapshot.docs.map((d) => {
+    const notifications = querySnapshot.docs.map((doc) => {
       return {
-        id: d.id,
-        ...(d.data() as Notification),
+        ...(doc.data() as Notification),
+        id: doc.id,
       };
     });
     return notifications;

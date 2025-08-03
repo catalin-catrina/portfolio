@@ -80,7 +80,7 @@ export class PostsService {
           const originalPost = docSnap.data() as Post;
           return {
             ...post,
-            id: post.id,
+            id: postSnap.id,
             originalPost: originalPost.post,
           } as Post;
         }
