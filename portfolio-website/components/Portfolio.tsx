@@ -38,6 +38,7 @@ export const Portfolio = () => {
             <div className="hidden absolute z-[-1] inset-0 lg:flex flex-col gap-4 justify-center items-center bg-linear-to-br from purple-950 to-blue-950 text-gray-300 rounded-2xl text-center">
               <h1 className="text-4xl">Placeholder Image</h1>
               <p className="text-2xl">to be replaced upon project completion</p>
+              <p className="text-lg md:text-xl">ETA: September 1st 2025</p>
               <p className="text-2xl">(hover card)</p>
             </div>
             <div className="absolute inset-0 z-10 flex flex-col gap-4 justify-center items-start opacity-100 lg:opacity-0 lg:translate-y-4 lg:transition lg:hover:opacity-100 lg:hover:translate-y-0 rounded-2xl p-4 max-lg:bg-linear-to-br max-lg:from-purple-950/80 max-lg:to-blue-950/70 lg:bg-black/90 text-left text-gray-300">
@@ -47,7 +48,9 @@ export const Portfolio = () => {
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"
               >
                 <h4 className="text-3xl">Social Media App (WIP)</h4>
-                <p className="text-lg md:text-xl">(to be named upon completion)</p>
+                <p className="text-lg md:text-xl">
+                  (to be named upon completion)
+                </p>
                 <p className="text-lg md:text-xl">
                   Tech stack: Angular FE, Firebase BE, and Algolia as search
                   service
@@ -116,11 +119,13 @@ export const Portfolio = () => {
                 className="w-full h-full flex flex-col gap-4 justify-center items-start"
               >
                 <h4 className="text-3xl">
-                  UI UX Landing Page with 2D animations
+                  Full stack Angular enterprise project
                 </h4>
-                <p className="text-3xl">(ETA: May 1st 2025)</p>
+                <p className="text-3xl">(ETA: November 1st 2025)</p>
                 <p className="text-xl">to be named upon completion</p>
-                <p className="text-xl">Tech stack: Next.js and Framer Motion</p>
+                <p className="text-xl">
+                  Tech stack: Angular, Express and PostgreSQL
+                </p>
               </Link>
             </div>
           </motion.div>
@@ -151,7 +156,7 @@ export const Portfolio = () => {
                 <p className="text-lg md:text-xl">
                   Build the Angular Social Media project with React / Next.js
                 </p>
-                <p className="text-lg md:text-xl">Not Started: ETA July 1st 2025</p>
+                <p className="text-lg md:text-xl">Not Started: ETA ???</p>
               </Link>
             </div>
           </motion.div>
