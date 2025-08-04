@@ -20,16 +20,6 @@ export class NotificationsComponent {
   unseenNotifCount = this.notificationsService.unseenNotifCount;
   user = this.profileService.userProfile;
 
-  notificationsEffect = effect(async () => {
-    const loggedInUser = this.user();
-    if (loggedInUser && loggedInUser.id) {
-      const notifications = await this.notificationsService.getNotifications(
-        loggedInUser.id
-      );
-      this.notifications.set(notifications);
-    }
-  });
-
   openPanel(): void {
     this.panelOpened = !this.panelOpened;
     this.notifications().forEach((notification) => {
