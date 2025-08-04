@@ -24,6 +24,7 @@ export class NotificationsComponent {
     this.panelOpened = !this.panelOpened;
     this.notifications().forEach((notification) => {
       if (!notification.seen) {
+        console.log('aici', notification.id);
         this.notificationsService.markAsSeen(notification.id);
       }
     });

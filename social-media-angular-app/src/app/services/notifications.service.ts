@@ -6,6 +6,7 @@ import {
   Firestore,
   getDocs,
   limit,
+  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
@@ -21,6 +22,7 @@ import { ProfileService } from './profile.service';
 })
 export class NotificationsService {
   notifications = signal<Notification[]>([]);
+  notificationsSub: (() => void) | null = null;
 
   unseenNotifCount = computed(() => {
     let count = 0;
@@ -34,13 +36,13 @@ export class NotificationsService {
 
   private firestore: Firestore = inject(Firestore);
   private profileService = inject(ProfileService);
+
   user = this.profileService.userProfile;
 
   notificationsEffect = effect(async () => {
     const loggedInUser = this.user();
     if (loggedInUser && loggedInUser.id) {
-      const notifications = await this.getNotifications(loggedInUser.id);
-      this.notifications.set(notifications);
+      this.getNotifications(loggedInUser.id);
     }
   });
 
@@ -69,7 +71,12 @@ export class NotificationsService {
     } as Notification);
   }
 
-  async getNotifications(to_id: string): Promise<Notification[]> {
+  async getNotifications(to_id: string) {
+    if (this.notificationsSub) {
+      this.notificationsSub();
+      this.notificationsSub = null;
+    }
+
     const notificationsCollection = collection(this.firestore, 'notifications');
     const q = query(
       notificationsCollection,
@@ -77,14 +84,16 @@ export class NotificationsService {
       orderBy('createdAt', 'desc'),
       limit(5)
     );
-    const querySnapshot = await getDocs(q);
-    const notifications = querySnapshot.docs.map((doc) => {
-      return {
-        ...(doc.data() as Notification),
-        id: doc.id,
-      };
+
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      const notifications = querySnapshot.docs.map(
+        (notifDoc) => ({ id: notifDoc.id, ...notifDoc.data() } as Notification)
+      );
+
+      this.notifications.set(notifications);
     });
-    return notifications;
+
+    this.notificationsSub = unsub;
   }
 
   markAsSeen(id: string): void {
