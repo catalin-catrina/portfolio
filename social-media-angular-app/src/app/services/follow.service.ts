@@ -11,7 +11,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Follow } from '../models/follow.interface';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../shared/services/profile.service';
 import { NotificationsService } from './notifications.service';
 
 @Injectable({

@@ -15,7 +15,7 @@ import { Comment } from '../models/comment.interface';
 import { Observable } from 'rxjs';
 import { NotificationsService } from './notifications.service';
 import { Post } from '../models/post.interface';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../shared/services/profile.service';
 
 @Injectable({
   providedIn: 'root',
