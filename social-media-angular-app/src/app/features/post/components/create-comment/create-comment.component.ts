@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommentsService } from '../../../services/comments.service';
-import { Post } from '../../../models/post.interface';
-import { ProfileService } from '../../../shared/services/profile.service';
+import { CommentsService } from '../../services/comments.service';
+import { Post } from '../../models/post.interface';
+import { ProfileService } from '../../../../shared/services/profile.service';
 
 @Component({
   selector: 'app-create-comment',

@@ -14,7 +14,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { Notification } from '../models/notification.interface';
-import { ProfileService } from '../shared/services/profile.service';
+import { ProfileService } from '../../../../shared/services/profile.service';
 
 @Injectable({
   providedIn: 'root',

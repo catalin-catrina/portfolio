@@ -13,9 +13,9 @@ import {
 } from '@angular/fire/firestore';
 import { Comment } from '../models/comment.interface';
 import { Observable } from 'rxjs';
-import { NotificationsService } from './notifications.service';
+import { NotificationsService } from '../../../core/widgets/notifications/services/notifications.service';
 import { Post } from '../models/post.interface';
-import { ProfileService } from '../shared/services/profile.service';
+import { ProfileService } from '../../../shared/services/profile.service';
 
 @Injectable({
   providedIn: 'root',

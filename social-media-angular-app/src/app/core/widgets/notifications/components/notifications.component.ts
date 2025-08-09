@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { NotificationsService } from '../../../services/notifications.service';
+import { NotificationsService } from '../services/notifications.service';
 import { Router } from '@angular/router';
-import { ProfileService } from '../../../shared/services/profile.service';
+import { ProfileService } from '../../../../shared/services/profile.service';
 
 @Component({
   selector: 'app-notifications',

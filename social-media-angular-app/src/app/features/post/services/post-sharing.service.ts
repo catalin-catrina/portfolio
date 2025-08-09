@@ -8,9 +8,9 @@ import {
   serverTimestamp,
 } from '@angular/fire/firestore';
 import { Post } from '../models/post.interface';
-import { AuthenticationService } from '../features/auth/services/authentication.service';
-import { NotificationsService } from './notifications.service';
-import { ProfileService } from '../shared/services/profile.service';
+import { AuthenticationService } from '../../auth/services/authentication.service';
+import { NotificationsService } from '../../../core/widgets/notifications/services/notifications.service';
+import { ProfileService } from '../../../shared/services/profile.service';
 
 @Injectable({
   providedIn: 'root',

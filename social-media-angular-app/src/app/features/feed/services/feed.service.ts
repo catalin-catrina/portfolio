@@ -15,7 +15,7 @@ import {
   startAfter,
   where,
 } from '@angular/fire/firestore';
-import { Post } from '../../../models/post.interface';
+import { Post } from '../../post/models/post.interface';
 
 @Injectable({
   providedIn: 'root',

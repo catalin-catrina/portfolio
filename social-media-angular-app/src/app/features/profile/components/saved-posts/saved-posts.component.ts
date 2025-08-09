@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PostSavingService } from '../../../../shared/services/post-saving.service';
 import { AuthenticationService } from '../../../auth/services/authentication.service';
-import { Post } from '../../../../models/post.interface';
+import { Post } from '../../../post/models/post.interface';
 import { CommonModule } from '@angular/common';
 import { TimestampToDatePipe } from '../../../../shared/pipes/timestamp-to-date.pipe';
 import { RouterLink, RouterLinkActive } from '@angular/router';

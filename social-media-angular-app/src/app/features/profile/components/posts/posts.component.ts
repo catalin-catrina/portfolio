@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Post } from '../../../../models/post.interface';
+import { Post } from '../../../post/models/post.interface';
 import { PostsService } from '../../../../shared/services/posts.service';
 import { AuthenticationService } from '../../../auth/services/authentication.service';
 import { TimestampToDatePipe } from '../../../../shared/pipes/timestamp-to-date.pipe';

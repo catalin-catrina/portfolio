@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PostsService } from '../../../shared/services/posts.service';
+import { PostsService } from '../../../../shared/services/posts.service';
 import { CommonModule } from '@angular/common';
 
-import { months } from '../../../constants/constants';
+import { months } from '../../models/months.constant';
 import { CreateCommentComponent } from '../create-comment/create-comment.component';
 import { CommentsComponent } from '../comments/comments.component';
-import { Post } from '../../../models/post.interface';
+import { Post } from '../../models/post.interface';
 import { switchMap } from 'rxjs';
-import { TimestampToDatePipe } from '../../../shared/pipes/timestamp-to-date.pipe';
-import { LikesComponent } from '../../../shared/ui/likes/likes.component';
-import { SavePostComponent } from '../../../shared/ui/save-post/save-post.component';
-import { SharePostComponent } from '../../../shared/ui/share-post/share-post.component';
+import { TimestampToDatePipe } from '../../../../shared/pipes/timestamp-to-date.pipe';
+import { LikesComponent } from '../../../../shared/ui/likes/likes.component';
+import { SavePostComponent } from '../../../../shared/ui/save-post/save-post.component';
+import { SharePostComponent } from '../../../../shared/ui/share-post/share-post.component';
 
 @Component({
   selector: 'app-post',

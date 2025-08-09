@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Post } from '../../../models/post.interface';
+import { Post } from '../../../features/post/models/post.interface';
 import { AuthenticationService } from '../../../features/auth/services/authentication.service';
-import { PostSharingService } from '../../../services/post-sharing.service';
+import { PostSharingService } from '../../../features/post/services/post-sharing.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

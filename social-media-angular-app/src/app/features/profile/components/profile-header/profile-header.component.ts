@@ -7,9 +7,9 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { IUser } from '../../../../models/user.interface';
+import { IUser } from '../../models/user.interface';
 import { ProfileService } from '../../../../shared/services/profile.service';
-import { FollowService } from '../../../../services/follow.service';
+import { FollowService } from '../../services/follow.service';
 import { AuthenticationService } from '../../../auth/services/authentication.service';
 
 @Component({

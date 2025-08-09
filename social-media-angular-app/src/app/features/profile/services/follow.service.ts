@@ -11,8 +11,8 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Follow } from '../models/follow.interface';
-import { ProfileService } from '../shared/services/profile.service';
-import { NotificationsService } from './notifications.service';
+import { ProfileService } from '../../../shared/services/profile.service';
+import { NotificationsService } from '../../../core/widgets/notifications/services/notifications.service';
 
 @Injectable({
   providedIn: 'root',

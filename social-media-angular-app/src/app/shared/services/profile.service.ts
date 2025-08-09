@@ -1,6 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import {  doc, Firestore, getDoc } from '@angular/fire/firestore';
-import { IUser } from '../../models/user.interface';
+import { doc, Firestore, getDoc } from '@angular/fire/firestore';
+import { IUser } from '../../features/profile/models/user.interface';
 import { AuthenticationService } from '../../features/auth/services/authentication.service';
 
 @Injectable({

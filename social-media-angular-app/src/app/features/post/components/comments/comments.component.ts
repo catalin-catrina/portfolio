@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CommentsService } from '../../../services/comments.service';
-import { Comment } from '../../../models/comment.interface';
-import { Post } from '../../../models/post.interface';
-import { months } from '../../../constants/constants';
+import { CommentsService } from '../../services/comments.service';
+import { Comment } from '../../models/comment.interface';
+import { Post } from '../../models/post.interface';
+import { months } from '../../models/months.constant';
 
 @Component({
   selector: 'app-comments',

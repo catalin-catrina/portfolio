@@ -13,7 +13,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Observable, switchMap } from 'rxjs';
-import { Post } from '../../models/post.interface';
+import { Post } from '../../features/post/models/post.interface';
 
 @Injectable({
   providedIn: 'root',

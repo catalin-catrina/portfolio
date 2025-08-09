@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-import { PostsService } from '../../../shared/services/posts.service';
+import { PostsService } from '../../../../shared/services/posts.service';
 
 @Component({
   selector: 'app-create-post',

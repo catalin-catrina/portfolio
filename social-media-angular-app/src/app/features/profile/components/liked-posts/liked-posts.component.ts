@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { LikesService } from '../../../../shared/services/likes.service';
 import { AuthenticationService } from '../../../auth/services/authentication.service';
-import { Post } from '../../../../models/post.interface';
+import { Post } from '../../../post/models/post.interface';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimestampToDatePipe } from '../../../../shared/pipes/timestamp-to-date.pipe';

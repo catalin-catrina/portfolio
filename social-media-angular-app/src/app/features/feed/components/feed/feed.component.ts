@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FeedService } from '../../services/feed.service';
 import { Subscription } from 'rxjs';
-import { Post } from '../../../../models/post.interface';
+import { Post } from '../../../post/models/post.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimestampToDatePipe } from '../../../../shared/pipes/timestamp-to-date.pipe';
 import { LikesComponent } from '../../../../shared/ui/likes/likes.component';

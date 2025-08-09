@@ -7,7 +7,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { AlgoliaService } from './algolia.service';
-import { IUser } from '../../../models/user.interface';
+import { IUser } from '../../profile/models/user.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { LikesService } from '../../services/likes.service';
-import { Post } from '../../../models/post.interface';
+import { Post } from '../../../features/post/models/post.interface';
 import { AuthenticationService } from '../../../features/auth/services/authentication.service';
-import { IUser } from '../../../models/user.interface';
+import { IUser } from '../../../features/profile/models/user.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({

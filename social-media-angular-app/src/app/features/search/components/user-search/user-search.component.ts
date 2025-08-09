@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UserSearchService } from '../../services/user-search.service';
 import { CommonModule } from '@angular/common';
-import { IUser } from '../../../../models/user.interface';
+import { IUser } from '../../../profile/models/user.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-    selector: 'app-user-search',
-    imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive],
-    templateUrl: './user-search.component.html',
-    styleUrl: './user-search.component.scss'
+  selector: 'app-user-search',
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive],
+  templateUrl: './user-search.component.html',
+  styleUrl: './user-search.component.scss',
 })
 export class UserSearchComponent implements OnInit {
   searchForm: FormGroup;

@@ -13,10 +13,10 @@ import {
   serverTimestamp,
   where,
 } from '@angular/fire/firestore';
-import { IUser } from '../../models/user.interface';
+import { IUser } from '../../features/profile/models/user.interface';
 import { Observable, switchMap } from 'rxjs';
-import { Post } from '../../models/post.interface';
-import { NotificationsService } from '../../services/notifications.service';
+import { Post } from '../../features/post/models/post.interface';
+import { NotificationsService } from '../../core/widgets/notifications/services/notifications.service';
 import { ProfileService } from './profile.service';
 
 @Injectable({

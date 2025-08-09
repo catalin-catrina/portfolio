@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { Post } from '../../../models/post.interface';
+import { Post } from '../../../features/post/models/post.interface';
 import { CommonModule } from '@angular/common';
 import { PostSavingService } from '../../services/post-saving.service';
 import { AuthenticationService } from '../../../features/auth/services/authentication.service';
